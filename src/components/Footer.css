@@ -27,7 +27,6 @@
   font-size: 20px;
   line-height: 1.8;
   font-weight: 400;
-  font-family: 'Gmarket Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
 }
 
 .footer-title-en,
@@ -37,7 +36,6 @@
   line-height: 1.8;
   font-weight: 400;
   text-align: right;
-  font-family: 'Gmarket Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
 }
 
 [data-theme="dark"] .footer-title-en,
@@ -63,19 +61,6 @@
   font-weight: 300;
   letter-spacing: 0px;
   margin: 0;
-  font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-}
-
-/* 어바웃 탭: 마우스 오버 시에만 표시 */
-.footer--hidden-in-about {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  opacity: 0;
-  transform: translateY(100%);
-  pointer-events: none;
-  transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
 /* 반응형 디자인 */

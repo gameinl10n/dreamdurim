@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 import './Navbar.css';
 
-const Navbar = memo(({ hideInAbout, visibleInAbout }) => {
+const Navbar = memo(() => {
   const location = useLocation();
   const { isDarkMode, toggleTheme } = useTheme();
 
@@ -16,10 +16,8 @@ const Navbar = memo(({ hideInAbout, visibleInAbout }) => {
     };
   }, [location.pathname]);
 
-  const hiddenClass = hideInAbout && !visibleInAbout ? ' navbar--hidden-in-about' : '';
-
   return (
-    <nav className={`navbar${hiddenClass}`}>
+    <nav className="navbar">
       <div className="navbar-container">
         <Link to="/about" className="navbar-logo">
           DREAMDURIM

@@ -1,115 +1,257 @@
-.gallery-container {
-  margin-top: 80px;
-  padding: 60px 0;
-  min-height: calc(100vh - 200px);
+.we-container {
+  min-height: 100vh;
+  padding: 120px 24px 80px;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  opacity: 0;
-  animation: fadeInPage 0.8s ease-in-out forwards;
 }
 
-.gallery-container.fade-in {
+.we-profiles {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 48px;
+  flex-wrap: wrap;
+}
+
+.we-profiles--team {
+  margin-top: 64px;
+}
+
+.we-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  min-width: 200px;
+  max-width: 260px;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  cursor: pointer;
+}
+
+.we-profile--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.we-profile-image-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.we-profile:hover .we-profile-image-wrap {
+  transform: scale(1.05) translateY(-4px);
+}
+
+.we-profile-image-placeholder {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  flex-shrink: 0;
+  background: transparent;
+  overflow: hidden;
+  border-radius: 50%;
+  transition: box-shadow 0.3s ease;
+  animation: float 5s ease-in-out infinite;
+}
+
+.we-profile:nth-child(2) .we-profile-image-placeholder {
+  animation-delay: 0.3s;
+}
+
+.we-profile:nth-child(3) .we-profile-image-placeholder {
+  animation-delay: 0.6s;
+}
+
+.we-profile-image-placeholder::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.we-profile:hover .we-profile-image-placeholder {
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+  animation-play-state: paused;
+}
+
+.we-profile:hover .we-profile-image-placeholder::after {
   opacity: 1;
 }
 
-.gallery {
-  display: flex;
-  align-items: center; /* 아이템들을 수직 중앙 정렬 */
-  overflow-x: auto;
-  overflow-y: hidden;
-  scroll-behavior: auto;
-  cursor: grab;
-  padding: 40px 60px;
-  gap: 0;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
-  height: calc(100vh - 200px); /* 컨테이너 높이 지정 */
-}
-
-.gallery::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
-}
-
-.gallery.dragging {
-  cursor: grabbing;
-}
-
-.gallery-item {
-  flex: 0 0 auto;
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
-              opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
-              filter 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-}
-
-.gallery.dragging .gallery-item {
-  transform: scale(0.95);
-  opacity: 0.75;
-  filter: brightness(0.7);
-}
-
-.gallery-image-wrapper {
-  width: 100%;
-  overflow: hidden;
-  background-color: var(--bg-secondary);
-  margin-bottom: 20px;
-  position: relative;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.gallery-image {
+.we-profile-image-placeholder img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
-.gallery-image.hidden {
-  opacity: 0;
+.we-profile:hover .we-profile-image-placeholder img {
+  transform: scale(1.03);
+}
+
+.we-profile-image-fallback {
   position: absolute;
-  top: 0;
-  left: 0;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-primary);
+  opacity: 0;
+  transition: opacity 0.3s;
 }
 
-.gallery-item:hover .gallery-image:not(.hidden) {
-  transform: scale(1.02);
+.we-profile-image-fallback--show {
+  opacity: 1;
 }
 
-.gallery-info {
-  padding: 0 10px;
-}
-
-.gallery-title {
-  font-size: 20px;
-  font-weight: 600;
-  margin-bottom: 8px;
-  color: var(--text-primary);
-  letter-spacing: 0.5px;
-}
-
-.gallery-description {
-  font-size: 14px;
+.we-profile-image-fallback span {
+  font-size: 80px;
+  font-weight: 700;
   color: var(--text-muted);
-  line-height: 1.5;
-  font-weight: 300;
 }
 
-/* 반응형 디자인 */
+.we-profile-content {
+  margin-top: 20px;
+  text-align: center;
+  padding: 0 8px;
+  transition: color 0.3s ease;
+}
+
+.we-profile-role {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent-color);
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+  transition: color 0.3s ease, opacity 0.3s ease;
+}
+
+.we-profile:hover .we-profile-role {
+  color: var(--accent-color);
+  opacity: 1;
+}
+
+.we-profile-name {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 4px 0;
+  letter-spacing: -0.5px;
+  transition: color 0.3s ease;
+}
+
+.we-profile:hover .we-profile-name {
+  color: var(--accent-color);
+}
+
+.we-profile-school {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text-muted);
+  margin: 0 0 10px 0;
+  letter-spacing: 0.3px;
+}
+
+.we-profile-career {
+  margin: 0;
+  text-align: left;
+}
+
+.we-profile-career-line {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin: 0 0 4px 0;
+  transition: color 0.3s ease, opacity 0.3s ease;
+}
+
+.we-profile-career-line:last-child {
+  margin-bottom: 0;
+}
+
+.we-profile-career-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent-color);
+  margin-right: 4px;
+}
+
+.we-profile-career-label--current {
+  font-weight: 700;
+  font-size: 13px;
+  margin-right: 6px;
+  color: #ff6b6b;
+  background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 50%, #ffd93d 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+[data-theme="dark"] .we-profile-career-label--current {
+  color: #ff8e53;
+  background: linear-gradient(135deg, #ff8e53 0%, #ffd93d 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.we-profile:hover .we-profile-career-line {
+  color: var(--text-primary);
+  opacity: 0.95;
+}
+
+.we-profile-bio {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin: 0;
+  transition: color 0.3s ease, opacity 0.3s ease;
+}
+
+.we-profile:hover .we-profile-bio {
+  color: var(--text-primary);
+  opacity: 0.95;
+}
+
 @media (max-width: 768px) {
-  .gallery {
-    padding: 30px 20px;
-  }
-  
-  .gallery-item {
-    width: 220px !important;
+  .we-container {
+    padding: 100px 20px 60px;
   }
 
-  .gallery-image-wrapper {
-    height: 330px !important;
+  .we-profiles {
+    flex-direction: column;
+    align-items: center;
+    gap: 48px;
+  }
+
+  .we-profile {
+    max-width: 260px;
+  }
+
+  .we-profile-image-placeholder {
+    width: 180px;
+    height: 180px;
+  }
+
+  .we-profile-name {
+    font-size: 18px;
+  }
+
+  .we-profile-bio {
+    font-size: 13px;
   }
 }
-

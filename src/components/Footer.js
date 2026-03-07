@@ -1,10 +1,8 @@
 import React, { memo } from 'react';
 import './Footer.css';
 
-const Footer = memo(({ hideInAbout, visibleInAbout }) => {
-  const hiddenClass = hideInAbout && !visibleInAbout ? ' footer--hidden-in-about' : '';
-  return (
-    <footer className={`footer${hiddenClass}`}>
+const Footer = memo(() => (
+  <footer className="footer">
       <div className="footer-content">
         <div className="footer-section">
           <div className="footer-title">꿈드림</div>
@@ -18,9 +16,8 @@ const Footer = memo(({ hideInAbout, visibleInAbout }) => {
       <div className="footer-copyright">
         <p>COPYRIGHT DREAMDURIM © 2024. ALL RIGHTS RESERVED.</p>
       </div>
-    </footer>
-  );
-});
+  </footer>
+));
 
 Footer.displayName = 'Footer';
 
