@@ -1,25 +1,18 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Helmet } from 'react-helmet-async';
+import { ABOUT_SENIORS } from '../data/aboutSeniors';
 import './About.css';
-
-const ABOUT_SENIORS = [
-  { id: 1, name: '현대그린푸드', logo: '/images/about/HYUNDAIGREENFOOD.png', description: '절강대학교 17학번 J선배님과 함께하고 있습니다', url: '' },
-  { id: 2, name: 'HDKSOE', logo: '/images/about/HDKSOE.png', description: '절강대학교 16학번 H선배님과 함께하고 있습니다', url: '' },
-  { id: 3, name: 'TEMU', logo: '/images/about/TEMU.jpg', description: '절강대학교 18학번 H선배님과 함께하고 있습니다', url: '' },
-  { id: 4, name: 'CJ', logo: '/images/about/CJ.jpg', description: '절강대학교 19학번 N선배님과 함께하고 있습니다', url: '' },
-  { id: 5, name: 'HUAQIN', logo: '/images/about/HUAQIN.png', description: '절강대학교 20학번 선배님과 함께하고 있습니다', url: '' },
-  { id: 6, name: 'HYPERGRYPH', logo: '/images/about/HYPERGRYPH.jpg', description: '절강대학교 18학번 선배님과 함께하고 있습니다', url: '' },
-];
 
 const SCROLL_COPIES = 3;
 const SCROLL_ITEMS = Array(SCROLL_COPIES)
   .fill(null)
-  .flatMap((_, batch) =>
-    ABOUT_SENIORS.map((item) => ({ ...item, key: `${batch}-${item.id}` }))
-  );
+  .flatMap((_, batch) => ABOUT_SENIORS.map((item) => ({ ...item, key: `${batch}-${item.id}` })));
 
-const LogoSlot = ({ item }) => {
+const LogoSlot = ({ item, t }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const isClickable = Boolean(item.url);
+  const description = item.descKey ? t(item.descKey) : '';
   const content = (
     <>
       {item.logo ? (
@@ -36,13 +29,9 @@ const LogoSlot = ({ item }) => {
       ) : (
         <span className="about-logo-placeholder">{item.name}</span>
       )}
-      {item.description && (
-        <span
-          className="about-logo-tooltip"
-          id={`tooltip-${item.key}`}
-          role="tooltip"
-        >
-          {item.description}
+      {description && (
+        <span className="about-logo-tooltip" id={`tooltip-${item.key}`} role="tooltip">
+          {description}
         </span>
       )}
     </>
@@ -50,21 +39,16 @@ const LogoSlot = ({ item }) => {
 
   const slotProps = {
     className: `about-logo-slot ${item.logo ? 'about-logo-slot--image' : ''}`,
-    title: item.description,
+    title: description,
     tabIndex: isClickable ? 0 : undefined,
     role: isClickable ? 'link' : undefined,
-    'aria-label': isClickable ? `${item.name} - 새 창에서 열기` : item.name,
-    'aria-describedby': item.description ? `tooltip-${item.key}` : undefined,
+    'aria-label': isClickable ? `${item.name} - ${t('about.openInNewWindow')}` : item.name,
+    'aria-describedby': description ? `tooltip-${item.key}` : undefined,
   };
 
   if (isClickable) {
     return (
-      <a
-        href={item.url}
-        target="_blank"
-        rel="noopener noreferrer"
-        {...slotProps}
-      >
+      <a href={item.url} target="_blank" rel="noopener noreferrer" {...slotProps}>
         {content}
       </a>
     );
@@ -74,22 +58,24 @@ const LogoSlot = ({ item }) => {
 };
 
 const About = () => {
+  const { t } = useTranslation();
   const [isPaused, setIsPaused] = useState(false);
 
   return (
     <div className="about">
+      <Helmet>
+        <title>ABOUT | DREAMDURIM</title>
+        <meta name="description" content="유학생을 위한 비영리조직 DREAMDURIM" />
+      </Helmet>
       <div className="about-hero">
-        <h1 className="about-title">DREAMDURIM</h1>
-        <p className="about-intro">유학생을 위한 비영리조직</p>
+        <h1 className="about-title">{t('about.title')}</h1>
+        <p className="about-intro">{t('about.intro')}</p>
       </div>
 
-      <section
-        className="about-seniors"
-        aria-labelledby="about-seniors-heading"
-      >
+      <section className="about-seniors" aria-labelledby="about-seniors-heading">
         <div className="about-seniors-head">
           <h2 id="about-seniors-heading" className="about-seniors-title">
-            꿈드림과 함께해 주시는 선배님들
+            {t('about.seniorsTitle')}
           </h2>
         </div>
         <div
@@ -102,11 +88,11 @@ const About = () => {
           <div
             className={`about-seniors-logos about-seniors-logos--scroll ${isPaused ? 'about-seniors-logos--paused' : ''}`}
             role="list"
-            aria-label="함께하는 선배 기업 로고"
+            aria-label={t('about.seniorsAria')}
           >
             {SCROLL_ITEMS.map((item) => (
               <div key={item.key} role="listitem" className="about-logo-slot-wrap">
-                <LogoSlot item={item} />
+                <LogoSlot item={item} t={t} />
               </div>
             ))}
           </div>

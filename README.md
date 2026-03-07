@@ -27,11 +27,13 @@ npm run build
 src/
 ├── components/
 │   ├── Navbar.js       # 상단 네비게이션
-│   ├── Home.js         # 홈 페이지
-│   ├── Gallery.js      # 활동 갤러리 (가로 스크롤)
-│   ├── Credit.js       # 소개 페이지
-│   ├── Guestbook.js    # 방명록 페이지
-│   └── Footer.js       # 하단 푸터
+│   ├── About.js        # 소개 페이지
+│   ├── We.js           # WE 섹션 (창립자/팀 리더 프로필)
+│   ├── History.js      # 히스토리 페이지
+│   ├── Footer.js       # 하단 푸터
+│   └── ScrollToTop.js  # 스크롤 탑 버튼
+├── context/
+│   └── ThemeContext.js # 테마 컨텍스트
 ├── App.js
 ├── App.css
 ├── index.js
@@ -40,18 +42,14 @@ src/
 
 ## 기능
 
-- **홈 페이지**: 타이핑 애니메이션과 배경 이미지
-- **활동 갤러리**: 가로 스크롤 갤러리, 마우스 드래그 및 휠 스크롤 지원
-- **소개 페이지**: 조직 소개 및 활동 내용
-- **방명록**: 댓글 작성 및 표시 (로컬 스토리지 저장)
-- **테마 토글**: 다크/라이트 모드 전환
+- **About**: 조직 소개, 선배 기업 로고
+- **WE**: 창립자·팀 리더 프로필 (경력, 학교, 학번)
+- **History**: 히스토리 (업데이트 준비중)
+- **테마 토글**: 다크/라이트 모드
 - **반응형 디자인**: 모바일 및 데스크톱 지원
 
 ## 이미지 설정
 
-활동 이미지는 `public/images/` 폴더에 저장하고 `Gallery.js`의 `ORIGINAL_ACTIVITIES` 배열에서 경로를 설정해주세요.
-홈 배경 이미지는 `public/images/home-bg.gif`에 저장해주세요.
-소개 페이지 이미지는 `public/images/credit-image.jpg`에 저장해주세요.
-
-이미지가 없을 경우 플레이스홀더 이미지가 자동으로 표시됩니다.
+- `public/images/about/` - 선배 기업 로고
+- `public/images/we/` - 창립자·팀 리더 사진 (we-founder.JPG, we-team1.jpg 등)
 

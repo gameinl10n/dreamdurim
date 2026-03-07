@@ -24,7 +24,10 @@
   margin-top: 16px;
   margin-bottom: 0;
   font-weight: 400;
-  transition: color 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease,
+    opacity 0.3s ease;
   animation: floatSlow 6s ease-in-out infinite 0.5s;
 }
 
@@ -35,7 +38,9 @@
   letter-spacing: 2px;
   text-transform: uppercase;
   margin: 0 auto;
-  transition: color 0.3s ease, transform 0.3s ease;
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
   animation: float 5s ease-in-out infinite;
 }
 
@@ -83,7 +88,9 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  transition: color 0.3s ease, transform 0.3s ease;
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
   animation: floatSlow 5.5s ease-in-out infinite;
 }
 
@@ -117,8 +124,12 @@
 }
 
 @keyframes about-scroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(calc(-100% / 3)); }
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-100% / 3));
+  }
 }
 
 .about-logo-slot-wrap {
@@ -136,7 +147,10 @@
   background: var(--about-card-bg, #fff);
   border-radius: 8px;
   box-shadow: var(--about-shadow, 0 2px 8px rgba(0, 0, 0, 0.06));
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.3s;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.3s;
   text-decoration: none;
   color: inherit;
 }
@@ -150,7 +164,7 @@
 
 .about-logo-slot:focus-visible,
 .about-logo-slot-wrap a:focus-visible {
-  outline: 2px solid #00D4BD;
+  outline: 2px solid #00d4bd;
   outline-offset: 4px;
 }
 
@@ -180,8 +194,12 @@
 }
 
 @keyframes about-skeleton-shimmer {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
 }
 
 .about-logo-slot img,
@@ -190,7 +208,9 @@
   max-height: 80px;
   object-fit: contain;
   filter: grayscale(30%);
-  transition: filter 0.2s, opacity 0.3s;
+  transition:
+    filter 0.2s,
+    opacity 0.3s;
 }
 
 .about-logo-slot img.about-logo-img--loading,
@@ -217,7 +237,10 @@
   border-radius: 6px;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+  transition:
+    opacity 0.2s ease,
+    visibility 0.2s ease,
+    transform 0.2s ease;
   pointer-events: none;
   z-index: 10;
 }
@@ -246,7 +269,7 @@
 }
 
 /* 다크 모드 */
-[data-theme="dark"] {
+[data-theme='dark'] {
   --about-title-color: #ffffff;
   --about-text-muted: #999;
   --about-text-secondary: #cccccc;
@@ -260,7 +283,7 @@
 }
 
 /* 라이트 모드 (명시) */
-[data-theme="light"] {
+[data-theme='light'] {
   --about-title-color: #000000;
   --about-text-muted: #888;
   --about-text-secondary: #333;
@@ -274,8 +297,12 @@
 }
 
 @media (max-width: 768px) {
-  .about-title { font-size: 36px; }
-  .about-intro { font-size: 14px; }
+  .about-title {
+    font-size: 36px;
+  }
+  .about-intro {
+    font-size: 14px;
+  }
   .about-seniors {
     margin-top: 48px;
     padding: 36px 16px 48px;
@@ -285,7 +312,9 @@
     flex-wrap: wrap;
     justify-content: center;
   }
-  .about-seniors-logos { gap: 80px; }
+  .about-seniors-logos {
+    gap: 80px;
+  }
   .about-logo-slot,
   .about-logo-slot-wrap a {
     width: 130px;

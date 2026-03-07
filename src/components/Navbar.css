@@ -38,9 +38,46 @@
   animation-play-state: paused;
 }
 
-.theme-toggle {
+.navbar-right {
   position: absolute;
   right: 40px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.navbar-lang {
+  display: flex;
+  gap: 2px;
+}
+
+.navbar-lang-btn {
+  padding: 6px 10px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  cursor: pointer;
+  transition:
+    color 0.2s,
+    background 0.2s,
+    border-color 0.2s;
+}
+
+.navbar-lang-btn:hover {
+  color: var(--text-primary);
+  border-color: var(--text-secondary);
+}
+
+.navbar-lang-btn.active {
+  color: var(--accent-color);
+  border-color: var(--accent-color);
+  background: var(--bg-secondary);
+}
+
+.theme-toggle {
   background: none;
   border: none;
   cursor: pointer;
@@ -151,7 +188,8 @@
 }
 
 @keyframes twinkle {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.3;
     transform: scale(1);
   }
@@ -191,4 +229,3 @@
   height: 1px;
   background-color: var(--accent-color);
 }
-
