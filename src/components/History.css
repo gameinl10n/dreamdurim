@@ -1,0 +1,294 @@
+.history-container {
+  margin-top: 80px;
+  padding: 80px 40px;
+  min-height: calc(100vh - 200px);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  opacity: 0;
+  animation: fadeInPage 0.8s ease-in-out forwards;
+  background-color: var(--bg-primary);
+}
+
+.history-container.fade-in {
+  opacity: 1;
+}
+
+.history-content {
+  max-width: 1400px;
+  width: 100%;
+}
+
+.history-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 80px;
+  align-items: start;
+}
+
+/* 왼쪽 이미지 섹션 */
+.history-image-section {
+  position: sticky;
+  top: 100px;
+}
+
+.history-image-placeholder {
+  width: 100%;
+  height: 600px;
+  background-color: var(--bg-secondary);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+.history-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* 오른쪽 타임라인 섹션 */
+.history-timeline-section {
+  position: relative;
+}
+
+.timeline {
+  position: relative;
+  padding: 0 50%;
+}
+
+/* 중앙 세로선 */
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: #8b7355;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+/* 년도 마커 (굵은 동그라미) */
+.timeline-year-item {
+  position: relative;
+  margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.timeline-year-marker {
+  position: absolute;
+  left: 50%;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: #8b7355;
+  border: 3px solid var(--bg-primary);
+  transform: translateX(-50%);
+  z-index: 2;
+  box-shadow: 0 0 0 2px #8b7355;
+}
+
+.timeline-year-content {
+  width: 100%;
+  text-align: center;
+}
+
+.timeline-year {
+  font-size: 24px;
+  font-weight: 700;
+  color: #8b7355;
+  font-family: 'Gmarket Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+[data-theme="dark"] .timeline-year {
+  color: #c9a882;
+}
+
+/* 이벤트 아이템 */
+.timeline-event-item {
+  position: relative;
+  margin-bottom: 30px;
+  min-height: 30px;
+}
+
+.timeline-event-marker {
+  position: absolute;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #8b7355;
+  border: 2px solid var(--bg-primary);
+  transform: translateX(-50%);
+  z-index: 2;
+  top: 8px;
+}
+
+[data-theme="dark"] .timeline-event-marker {
+  background-color: #c9a882;
+}
+
+.timeline-month-box {
+  display: flex;
+  width: calc(50% - 20px);
+  align-items: flex-start;
+}
+
+.timeline-event-item.event-left .timeline-month-box {
+  flex-direction: row;
+  padding-left: 4%;
+  margin-right: auto;
+  text-align: left;
+}
+
+.timeline-event-item.event-right .timeline-month-box {
+  flex-direction: row-reverse;
+  padding-right: 4%;
+  margin-left: auto;
+  text-align: right;
+}
+
+.timeline-event-month {
+  font-size: 14px;
+  font-weight: 600;
+  color: #8b7355;
+  width: 40px;
+  flex-shrink: 0;
+  font-family: 'Gmarket Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+.timeline-event-item.event-left .timeline-event-month {
+  margin-right: 10px;
+  margin-left: 0;
+}
+
+.timeline-event-item.event-right .timeline-event-month {
+  margin-left: 10px;
+  margin-right: 0;
+}
+
+[data-theme="dark"] .timeline-event-month {
+  color: #c9a882;
+}
+
+.timeline-event-text {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #27221f;
+  font-weight: 400;
+  font-family: 'Noto Sans KR', 'Nanum Square', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  word-break: keep-all;
+  margin-top: -3px;
+}
+
+[data-theme="dark"] .timeline-event-text {
+  color: #d4d0ca;
+}
+
+/* 년도 사이 연결선 */
+.timeline-connector {
+  height: 40px;
+  position: relative;
+}
+
+@keyframes fadeInPage {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 반응형 디자인 */
+@media (max-width: 1200px) {
+  .history-layout {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+
+  .history-image-section {
+    position: relative;
+    top: 0;
+  }
+
+  .history-image-placeholder {
+    height: 400px;
+  }
+
+  .timeline {
+    padding: 0 40%;
+  }
+
+  .timeline::before {
+    left: 50%;
+  }
+}
+
+@media (max-width: 768px) {
+  .history-container {
+    padding: 60px 20px;
+  }
+
+  .history-layout {
+    gap: 40px;
+  }
+
+  .history-image-placeholder {
+    height: 300px;
+  }
+
+  .timeline {
+    padding: 0 20px;
+  }
+
+  .timeline::before {
+    left: 20px;
+    transform: none;
+  }
+
+  .timeline-year-marker {
+    left: 20px;
+    transform: translateX(-50%);
+    width: 14px;
+    height: 14px;
+  }
+
+  .timeline-event-marker {
+    left: 20px;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 6px;
+  }
+
+  .timeline-month-box {
+    width: calc(100% - 40px);
+    margin-left: 40px !important;
+    margin-right: 0 !important;
+    flex-direction: row !important;
+    text-align: left !important;
+  }
+
+  .timeline-event-item.event-left .timeline-month-box,
+  .timeline-event-item.event-right .timeline-month-box {
+    flex-direction: row !important;
+    text-align: left !important;
+  }
+
+  .timeline-event-month {
+    margin-right: 10px !important;
+    margin-left: 0 !important;
+  }
+
+  .timeline-year {
+    font-size: 20px;
+  }
+}
+

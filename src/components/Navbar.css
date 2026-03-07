@@ -191,3 +191,18 @@
   background-color: var(--accent-color);
 }
 
+/* 어바웃 탭: 마우스 오버 시에만 표시 */
+.navbar--hidden-in-about {
+  opacity: 0;
+  transform: translateY(-100%);
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.navbar.navbar--hidden-in-about {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+

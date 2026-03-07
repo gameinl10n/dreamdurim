@@ -3,32 +3,33 @@ import { Link, useLocation } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 import './Navbar.css';
 
-const Navbar = memo(() => {
+const Navbar = memo(({ hideInAbout, visibleInAbout }) => {
   const location = useLocation();
   const { isDarkMode, toggleTheme } = useTheme();
 
   const isActive = useMemo(() => {
     const path = location.pathname;
     return {
-      home: path === '/' || path === '/home',
+      about: path === '/about',
       gallery: path === '/works',
-      credit: path === '/credit',
-      guestbook: path === '/guestbook'
+      history: path === '/history'
     };
   }, [location.pathname]);
 
+  const hiddenClass = hideInAbout && !visibleInAbout ? ' navbar--hidden-in-about' : '';
+
   return (
-    <nav className="navbar">
+    <nav className={`navbar${hiddenClass}`}>
       <div className="navbar-container">
-        <Link to="/" className="navbar-logo">
+        <Link to="/about" className="navbar-logo">
           DREAMDURIM
         </Link>
         <div className="navbar-menu">
           <Link
-            to="/"
-            className={`navbar-link ${isActive.home ? 'active' : ''}`}
+            to="/about"
+            className={`navbar-link ${isActive.about ? 'active' : ''}`}
           >
-            HOME
+            ABOUT
           </Link>
           <Link
             to="/works"
@@ -37,16 +38,10 @@ const Navbar = memo(() => {
             WE
           </Link>
           <Link
-            to="/credit"
-            className={`navbar-link ${isActive.credit ? 'active' : ''}`}
+            to="/history"
+            className={`navbar-link ${isActive.history ? 'active' : ''}`}
           >
-            ABOUT
-          </Link>
-          <Link
-            to="/guestbook"
-            className={`navbar-link ${isActive.guestbook ? 'active' : ''}`}
-          >
-            GUESTBOOK
+            HISTORY
           </Link>
         </div>
         <button 

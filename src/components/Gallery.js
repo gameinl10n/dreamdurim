@@ -46,7 +46,7 @@ const ORIGINAL_ACTIVITIES = [
     },
     {
       id: 6,
-      title: '활동5',
+      title: '활동6',
       description: '여기다가 영어 설명 혹은 날짜?? 날짜를 하나 더 만들까',
       image: '/images/work4.jpg',
       width: 310,

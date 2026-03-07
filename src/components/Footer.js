@@ -1,9 +1,10 @@
 import React, { memo } from 'react';
 import './Footer.css';
 
-const Footer = memo(() => {
+const Footer = memo(({ hideInAbout, visibleInAbout }) => {
+  const hiddenClass = hideInAbout && !visibleInAbout ? ' footer--hidden-in-about' : '';
   return (
-    <footer className="footer">
+    <footer className={`footer${hiddenClass}`}>
       <div className="footer-content">
         <div className="footer-section">
           <div className="footer-title">꿈드림</div>
