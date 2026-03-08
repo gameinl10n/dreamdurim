@@ -64,8 +64,8 @@ const About = () => {
   return (
     <div className="about">
       <Helmet>
-        <title>ABOUT | DREAMDURIM</title>
-        <meta name="description" content="유학생을 위한 비영리조직 DREAMDURIM" />
+        <title>{t('meta.aboutTitle')}</title>
+        <meta name="description" content={t('meta.aboutDesc')} />
       </Helmet>
       <div className="about-hero">
         <h1 className="about-title">{t('about.title')}</h1>

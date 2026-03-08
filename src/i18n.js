@@ -5,14 +5,14 @@ const resources = {
   ko: {
     translation: {
       nav: {
-        logo: 'DREAMDURIM',
+        logo: '꿈드림',
         about: 'ABOUT',
         we: 'WE',
         history: 'HISTORY',
         toggleTheme: '테마 전환',
       },
       about: {
-        title: 'DREAMDURIM',
+        title: '꿈드림',
         intro: '유학생을 위한 비영리조직',
         seniorsTitle: '꿈드림과 함께해 주시는 선배님들',
         seniorsAria: '함께하는 선배 기업 로고',
@@ -49,7 +49,15 @@ const resources = {
         subtitle: '유학생을 위한 비영리 조직',
         titleEn: 'DREAMDURIM',
         subtitleEn: 'NPO for international students',
-        copyright: 'COPYRIGHT DREAMDURIM © {{year}}. ALL RIGHTS RESERVED.',
+        copyright: 'COPYRIGHT 꿈드림 © {{year}}. ALL RIGHTS RESERVED.',
+      },
+      meta: {
+        aboutTitle: 'ABOUT | 꿈드림',
+        aboutDesc: '유학생을 위한 비영리조직 꿈드림',
+        weTitle: 'WE | 꿈드림',
+        weDesc: '꿈드림 창립자 및 팀 리더 소개',
+        historyTitle: 'HISTORY | 꿈드림',
+        historyDesc: '꿈드림 연혁',
       },
     },
   },
@@ -65,7 +73,7 @@ const resources = {
       about: {
         title: 'DREAMDURIM',
         intro: 'NPO for international students',
-        seniorsTitle: 'Seniors with DreamDurim',
+        seniorsTitle: 'Seniors with DREAMDURIM',
         seniorsAria: 'Partner senior company logos',
         openInNewWindow: 'Open in new window',
         seniorDesc1: 'With ZJU 17 alumnus J.',
@@ -86,37 +94,45 @@ const resources = {
       },
       history: {
         title: 'HISTORY',
-        event1: 'DreamDurim founded',
-        event2: 'DreamDurim Gen 1 activities started',
-        event3: 'DreamDurim 1st Mentoring Day',
-        event4: 'DreamDurim Gen 2 activities started',
+        event1: 'DREAMDURIM founded',
+        event2: 'DREAMDURIM Gen 1 activities started',
+        event3: 'DREAMDURIM 1st Mentoring Day',
+        event4: 'DREAMDURIM Gen 2 activities started',
         readMore: 'Read more',
         readLess: 'Show less',
         viewLarger: 'View larger',
         closeLightbox: 'Close',
       },
       footer: {
-        title: 'DreamDurim',
+        title: 'DREAMDURIM',
         subtitle: 'NPO for international students',
         titleEn: 'DREAMDURIM',
         subtitleEn: 'NPO for international students',
         copyright: 'COPYRIGHT DREAMDURIM © {{year}}. ALL RIGHTS RESERVED.',
+      },
+      meta: {
+        aboutTitle: 'ABOUT | DREAMDURIM',
+        aboutDesc: 'NPO for international students DREAMDURIM',
+        weTitle: 'WE | DREAMDURIM',
+        weDesc: 'DREAMDURIM founders and team leaders',
+        historyTitle: 'HISTORY | DREAMDURIM',
+        historyDesc: 'DREAMDURIM history',
       },
     },
   },
   zh: {
     translation: {
       nav: {
-        logo: 'DREAMDURIM',
+        logo: '朵林多领',
         about: '关于',
         we: '我们',
         history: '历史',
         toggleTheme: '切换主题',
       },
       about: {
-        title: 'DREAMDURIM',
+        title: '朵林多领',
         intro: '面向留学生的非营利组织',
-        seniorsTitle: '与梦梦同行的前辈们',
+        seniorsTitle: '与朵林多领同行的前辈们',
         seniorsAria: '合作前辈企业 logo',
         openInNewWindow: '在新窗口中打开',
         seniorDesc1: '与浙江大学17届J学长一起。',
@@ -137,21 +153,29 @@ const resources = {
       },
       history: {
         title: '历史',
-        event1: '梦梦成立',
-        event2: '梦梦一届活动开始',
-        event3: '梦梦第一届导师日',
-        event4: '梦梦二届活动开始',
+        event1: '朵林多领成立',
+        event2: '朵林多领一届活动开始',
+        event3: '朵林多领第一届导师日',
+        event4: '朵林多领二届活动开始',
         readMore: '了解更多',
         readLess: '收起',
         viewLarger: '放大查看',
         closeLightbox: '关闭',
       },
       footer: {
-        title: '梦梦',
+        title: '朵林多领',
         subtitle: '面向留学生的非营利组织',
         titleEn: 'DREAMDURIM',
         subtitleEn: 'NPO for international students',
-        copyright: 'COPYRIGHT DREAMDURIM © {{year}}. ALL RIGHTS RESERVED.',
+        copyright: 'COPYRIGHT 朵林多领 © {{year}}. ALL RIGHTS RESERVED.',
+      },
+      meta: {
+        aboutTitle: 'ABOUT | 朵林多领',
+        aboutDesc: '面向留学生的非营利组织 朵林多领',
+        weTitle: 'WE | 朵林多领',
+        weDesc: '朵林多领创始人及队长介绍',
+        historyTitle: 'HISTORY | 朵林多领',
+        historyDesc: '朵林多领历史',
       },
     },
   },
@@ -165,5 +189,14 @@ i18n.use(initReactI18next).init({
   fallbackLng: 'ko',
   interpolation: { escapeValue: false },
 });
+
+const setHtmlLang = (lng) => {
+  if (typeof document !== 'undefined') {
+    document.documentElement.lang = lng;
+  }
+};
+
+i18n.on('languageChanged', setHtmlLang);
+setHtmlLang(i18n.language);
 
 export default i18n;

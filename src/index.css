@@ -29,6 +29,11 @@
   font-display: swap;
 }
 
+/* 중국어: Microsoft Yahei 우선 적용 */
+html:lang(zh) {
+  --font-primary: 'Microsoft Yahei', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft JhengHei', sans-serif;
+}
+
 :root {
   /* 다크 모드 (기본) */
   --bg-primary: #1a1a1a;

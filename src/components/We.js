@@ -86,8 +86,8 @@ const We = () => {
   return (
     <div className="we-container" ref={containerRef}>
       <Helmet>
-        <title>WE | DREAMDURIM</title>
-        <meta name="description" content="DREAMDURIM 창립자 및 팀 리더 소개" />
+        <title>{t('meta.weTitle')}</title>
+        <meta name="description" content={t('meta.weDesc')} />
       </Helmet>
       <div className="we-profiles we-profiles--founders">
         {FOUNDERS.map((member, index) => (

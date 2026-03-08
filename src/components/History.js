@@ -197,13 +197,13 @@ const History = () => {
   return (
     <div className="history" ref={containerRef}>
       <Helmet>
-        <title>HISTORY | DREAMDURIM</title>
-        <meta name="description" content="DREAMDURIM 연혁" />
+        <title>{t('meta.historyTitle')}</title>
+        <meta name="description" content={t('meta.historyDesc')} />
         <script type="application/ld+json">
           {JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'Organization',
-            name: 'DREAMDURIM',
+            name: t('footer.title'),
             event: schemaEvents,
           })}
         </script>
