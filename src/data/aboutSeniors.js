@@ -29,4 +29,18 @@ export const ABOUT_SENIORS = [
     descKey: 'about.seniorDesc6',
     url: '',
   },
+  {
+    id: 7,
+    name: 'NEORIGIN',
+    logo: `${process.env.PUBLIC_URL || ''}/images/about/NEORIGIN.png`,
+    descKey: 'about.seniorDesc7',
+    url: '',
+  },
+  {
+    id: 8,
+    name: 'SHOKZ',
+    logo: `${process.env.PUBLIC_URL || ''}/images/about/SHOKZ.png`,
+    descKey: 'about.seniorDesc8',
+    url: '',
+  },
 ];
