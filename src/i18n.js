@@ -33,6 +33,7 @@ const resources = {
       we: {
         current: '현재',
         schoolName: '절강대학교',
+        studentIdFormat: '{{year}}학번',
         roleCoFounder: 'Co-Founder',
         roleCoFounderCto: 'Co-Founder',
         roleCoFounderCeo: 'Co-Founder',
@@ -98,6 +99,7 @@ const resources = {
       we: {
         current: 'Present',
         schoolName: 'Zhejiang University',
+        studentIdFormat: "Class of '{{year}}",
         roleCoFounder: 'Co-Founder',
         roleCoFounderCto: 'Co-Founder',
         roleCoFounderCeo: 'Co-Founder',
@@ -163,6 +165,7 @@ const resources = {
       we: {
         current: '至今',
         schoolName: '浙江大学',
+        studentIdFormat: '{{year}}届',
         roleCoFounder: '联合创始人',
         roleCoFounderCto: '联合创始人',
         roleCoFounderCeo: '联合创始人',

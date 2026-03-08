@@ -47,7 +47,7 @@ const WeProfileCard = ({ member, isVisible, index, t }) => {
         <h2 className="we-profile-name">{member.name}</h2>
         {(schoolLabel || member.studentId) && (
           <p className="we-profile-school">
-            {[schoolLabel, member.studentId].filter(Boolean).join(' · ')}
+            {[schoolLabel, member.studentId ? t('we.studentIdFormat', { year: member.studentId }) : ''].filter(Boolean).join(' · ')}
           </p>
         )}
         {((member.career?.current &&

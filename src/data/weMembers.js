@@ -18,7 +18,7 @@ export const WE_MEMBERS = [
     group: 'founder',
     name: '권병욱',
     school: '절강대학교',
-    studentId: '18학번',
+    studentId: '18',
     career: {
       former: [
         { company: 'miHoYo', role: 'Localization Specialist' },
@@ -34,7 +34,7 @@ export const WE_MEMBERS = [
     group: 'founder',
     name: '유승호',
     school: '절강대학교',
-    studentId: '20학번',
+    studentId: '20',
     career: {
       former: [
         { company: 'hackseoul', role: '1st Prize Winner(Team Yorigo)' },
@@ -51,7 +51,7 @@ export const WE_MEMBERS = [
     teamLeadPeriod: '2025.03 - 2026.02',
     name: '천은서',
     school: '절강대학교',
-    studentId: '24학번',
+    studentId: '24',
     career: { former: [], current: { company: 'Alibaba', role: 'Strategic Analysis Intern' } },
     image: `${process.env.PUBLIC_URL || ''}/images/we/team-lead1.jpg`,
   },
@@ -62,7 +62,7 @@ export const WE_MEMBERS = [
     teamLeadPeriod: '2026.03 - 현재',
     name: '박지원',
     school: '절강대학교',
-    studentId: '23학번',
+    studentId: '23',
     career: { former: [], current: { company: '', role: '' } },
     image: `${process.env.PUBLIC_URL || ''}/images/we/team-lead2.jpg`,
   },
