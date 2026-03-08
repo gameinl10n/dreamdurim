@@ -24,7 +24,7 @@ export const WE_MEMBERS = [
       ],
       current: { company: 'Hypergryph', role: 'Localization Korean Team Lead' },
     },
-    image: '/images/we/we-founder.JPG',
+    image: `${process.env.PUBLIC_URL || ''}/images/we/we-founder.JPG`,
   },
   {
     id: 2,
@@ -40,7 +40,7 @@ export const WE_MEMBERS = [
       ],
       current: { company: 'Yorigo', role: 'Chief Executive Officer' },
     },
-    image: '/images/we/we-team1.jpg',
+    image: `${process.env.PUBLIC_URL || ''}/images/we/we-team1.jpg`,
   },
   {
     id: 4,
@@ -51,7 +51,7 @@ export const WE_MEMBERS = [
     school: '절강대학교',
     studentId: '24학번',
     career: { former: [], current: { company: '', role: '' } },
-    image: '/images/we/we-team3.jpg',
+    image: `${process.env.PUBLIC_URL || ''}/images/we/we-team3.jpg`,
   },
   {
     id: 3,
@@ -62,6 +62,6 @@ export const WE_MEMBERS = [
     school: '절강대학교',
     studentId: '22학번',
     career: { former: [], current: { company: '', role: '' } },
-    image: '/images/we/we-team2.jpg',
+    image: `${process.env.PUBLIC_URL || ''}/images/we/we-team2.jpg`,
   },
 ];
