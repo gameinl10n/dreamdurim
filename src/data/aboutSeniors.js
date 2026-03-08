@@ -43,4 +43,11 @@ export const ABOUT_SENIORS = [
     descKey: 'about.seniorDesc8',
     url: '',
   },
+  {
+    id: 9,
+    name: 'GienTech',
+    logo: `${process.env.PUBLIC_URL || ''}/images/about/GienTech.png`,
+    descKey: 'about.seniorDesc9',
+    url: '',
+  },
 ];
