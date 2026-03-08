@@ -229,3 +229,131 @@
   height: 1px;
   background-color: var(--accent-color);
 }
+
+/* Mobile */
+.navbar-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.navbar-hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--text-primary);
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+.navbar-hamburger.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.navbar-hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.navbar-hamburger.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 12px 0;
+  }
+
+  .navbar-container {
+    padding: 0 16px;
+    gap: 16px;
+    justify-content: space-between;
+  }
+
+  .navbar-logo {
+    position: static;
+    font-size: 18px;
+    letter-spacing: -0.5px;
+  }
+
+  .navbar-hamburger {
+    display: flex;
+  }
+
+  .navbar-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 70%;
+    max-width: 280px;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: 0;
+    padding: 70px 24px 24px;
+    background: var(--navbar-bg);
+    backdrop-filter: blur(10px);
+    border-left: 1px solid var(--border-color);
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.3);
+    transform: translateX(100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: transform 0.3s, opacity 0.3s, visibility 0.3s;
+    z-index: 1000;
+  }
+
+  .navbar-menu.open {
+    transform: translateX(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .navbar-menu .navbar-link {
+    padding: 16px 0;
+    font-size: 18px;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .navbar-menu .navbar-link:last-child {
+    border-bottom: none;
+  }
+
+  .navbar-right {
+    position: static;
+    margin-left: 0;
+    gap: 8px;
+  }
+
+  .navbar-lang-btn {
+    padding: 5px 8px;
+    font-size: 11px;
+  }
+
+  .theme-toggle {
+    width: 40px;
+    height: 40px;
+  }
+
+  .theme-toggle-container {
+    transform: scale(0.85);
+    transform-origin: center;
+  }
+}
+
+@media (max-width: 400px) {
+  .navbar-logo {
+    font-size: 16px;
+  }
+
+  .navbar-lang-btn {
+    padding: 4px 6px;
+    font-size: 10px;
+  }
+}

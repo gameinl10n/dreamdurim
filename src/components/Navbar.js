@@ -1,4 +1,4 @@
-import React, { useMemo, memo } from 'react';
+import React, { useMemo, memo, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '../context/ThemeContext';
@@ -15,6 +15,7 @@ const Navbar = memo(() => {
   const location = useLocation();
   const { t, i18n } = useTranslation();
   const { isDarkMode, toggleTheme } = useTheme();
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
@@ -30,20 +31,22 @@ const Navbar = memo(() => {
     };
   }, [location.pathname]);
 
+  const closeMenu = () => setMenuOpen(false);
+
   return (
     <nav className="navbar" aria-label="메인 네비게이션">
       <div className="navbar-container">
-        <Link to={ROUTES.ABOUT} className="navbar-logo">
+        <Link to={ROUTES.ABOUT} className="navbar-logo" onClick={closeMenu}>
           {t('nav.logo')}
         </Link>
-        <div className="navbar-menu">
-          <Link to={ROUTES.ABOUT} className={`navbar-link ${isActive.about ? 'active' : ''}`}>
+        <div className={`navbar-menu ${menuOpen ? 'open' : ''}`}>
+          <Link to={ROUTES.ABOUT} className={`navbar-link ${isActive.about ? 'active' : ''}`} onClick={closeMenu}>
             {t('nav.about')}
           </Link>
-          <Link to={ROUTES.WE} className={`navbar-link ${isActive.we ? 'active' : ''}`}>
+          <Link to={ROUTES.WE} className={`navbar-link ${isActive.we ? 'active' : ''}`} onClick={closeMenu}>
             {t('nav.we')}
           </Link>
-          <Link to={ROUTES.HISTORY} className={`navbar-link ${isActive.history ? 'active' : ''}`}>
+          <Link to={ROUTES.HISTORY} className={`navbar-link ${isActive.history ? 'active' : ''}`} onClick={closeMenu}>
             {t('nav.history')}
           </Link>
         </div>
@@ -118,6 +121,17 @@ const Navbar = memo(() => {
                 </>
               )}
             </div>
+          </button>
+          <button
+            type="button"
+            className={`navbar-hamburger ${menuOpen ? 'open' : ''}`}
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-expanded={menuOpen}
+            aria-label={menuOpen ? '메뉴 닫기' : '메뉴 열기'}
+          >
+            <span />
+            <span />
+            <span />
           </button>
         </div>
       </div>

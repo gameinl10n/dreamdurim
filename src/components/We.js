@@ -1,5 +1,6 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 import { Helmet } from 'react-helmet-async';
 import { WE_MEMBERS, ROLE_KEYS } from '../data/weMembers';
 import './We.css';
@@ -80,21 +81,7 @@ const WeProfileCard = ({ member, isVisible, index, t }) => {
 
 const We = () => {
   const { t } = useTranslation();
-  const [isVisible, setIsVisible] = useState(false);
-  const containerRef = useRef(null);
-
-  useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0]?.isIntersecting) setIsVisible(true);
-      },
-      { threshold: 0.15 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
+  const [containerRef, isVisible] = useIntersectionObserver(0.15);
 
   return (
     <div className="we-container" ref={containerRef}>

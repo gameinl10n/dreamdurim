@@ -1,5 +1,6 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 import { Helmet } from 'react-helmet-async';
 import { HISTORY_EVENTS } from '../data/historyData';
 import './History.css';
@@ -141,25 +142,11 @@ const Lightbox = ({ src, onClose, closeLabel }) => {
 
 const History = () => {
   const { t } = useTranslation();
-  const [isVisible, setIsVisible] = useState(false);
+  const [containerRef, isVisible] = useIntersectionObserver(0.15);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [lightboxSrc, setLightboxSrc] = useState(null);
-  const containerRef = useRef(null);
   const timelineRef = useRef(null);
   const itemRefs = useRef([]);
-
-  useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0]?.isIntersecting) setIsVisible(true);
-      },
-      { threshold: 0.15 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -186,21 +173,26 @@ const History = () => {
     itemRefs.current[index]?.scrollIntoView({ behavior: 'smooth', block: 'center' });
   };
 
-  const eventsWithYears = [];
-  SORTED_EVENTS.forEach((event, i) => {
-    const year = getYear(event.date);
-    const prevYear = i > 0 ? getYear(SORTED_EVENTS[i - 1].date) : null;
-    if (year !== prevYear) {
-      eventsWithYears.push({ type: 'year', year });
-    }
-    eventsWithYears.push({ type: 'event', event, index: i });
-  });
+  const eventsWithYears = useMemo(() => {
+    const result = [];
+    SORTED_EVENTS.forEach((event, i) => {
+      const year = getYear(event.date);
+      const prevYear = i > 0 ? getYear(SORTED_EVENTS[i - 1].date) : null;
+      if (year !== prevYear) result.push({ type: 'year', year });
+      result.push({ type: 'event', event, index: i });
+    });
+    return result;
+  }, []);
 
-  const schemaEvents = HISTORY_EVENTS.map((e) => ({
-    '@type': 'Event',
-    name: t(e.descKey),
-    startDate: e.date.replace('.', '-') + '-01',
-  }));
+  const schemaEvents = useMemo(
+    () =>
+      HISTORY_EVENTS.map((e) => ({
+        '@type': 'Event',
+        name: t(e.descKey),
+        startDate: e.date.replace('.', '-') + '-01',
+      })),
+    [t]
+  );
 
   return (
     <div className="history" ref={containerRef}>
