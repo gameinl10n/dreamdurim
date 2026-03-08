@@ -12,7 +12,7 @@ export const ROLE_KEYS = {
 export const WE_MEMBERS = [
   {
     id: 1,
-    role: 'Co-Founder',
+    role: 'Co-Founder · CTO',
     group: 'founder',
     name: '권병욱',
     school: '절강대학교',
@@ -28,7 +28,7 @@ export const WE_MEMBERS = [
   },
   {
     id: 2,
-    role: 'Co-Founder',
+    role: 'Co-Founder · CEO',
     group: 'founder',
     name: '유승호',
     school: '절강대학교',
