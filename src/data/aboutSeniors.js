@@ -57,4 +57,18 @@ export const ABOUT_SENIORS = [
     descKey: 'about.seniorDesc10',
     url: '',
   },
+  {
+    id: 11,
+    name: 'Kearney-100',
+    logo: `${process.env.PUBLIC_URL || ''}/images/about/Kearney-100.png`,
+    descKey: 'about.seniorDesc11',
+    url: '',
+  },
+  {
+    id: 12,
+    name: 'FIRSTFUN',
+    logo: `${process.env.PUBLIC_URL || ''}/images/about/FIRSTFUN.png`,
+    descKey: 'about.seniorDesc12',
+    url: '',
+  },
 ];

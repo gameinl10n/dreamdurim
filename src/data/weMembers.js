@@ -48,7 +48,7 @@ export const WE_MEMBERS = [
     id: 4,
     role: 'Team Lead · Gen 1',
     group: 'team',
-    teamLeadPeriod: '2025.12 - 2026.02',
+    teamLeadPeriod: '2025.03 - 2026.02',
     name: '천은서',
     school: '절강대학교',
     studentId: '24학번',

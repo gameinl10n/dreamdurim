@@ -27,6 +27,8 @@ const resources = {
         seniorDesc8: '상해교통대학교 21학번 I선배님과 함께하고 있습니다',
         seniorDesc9: '절강대학교 19학번 K선배님과 함께하고 있습니다',
         seniorDesc10: '절강대학교 20학번 Y선배님과 함께하고 있습니다',
+        seniorDesc11: '절강대학교 18학번 C선배님과 함께하고 있습니다',
+        seniorDesc12: '절강대학교 18학번 U선배님과 함께하고 있습니다',
       },
       we: {
         current: '현재',
@@ -90,6 +92,8 @@ const resources = {
         seniorDesc8: 'With Shanghai Jiao Tong University 21 alumnus I.',
         seniorDesc9: 'With ZJU 19 alumnus K.',
         seniorDesc10: 'With ZJU 20 alumnus Y.',
+        seniorDesc11: 'With ZJU 18 alumnus C.',
+        seniorDesc12: 'With ZJU 18 alumnus U.',
       },
       we: {
         current: 'Present',
@@ -153,6 +157,8 @@ const resources = {
         seniorDesc8: '与上海交通大学21届I学长一起。',
         seniorDesc9: '与浙江大学19届K学长一起。',
         seniorDesc10: '与浙江大学20届Y学长一起。',
+        seniorDesc11: '与浙江大学18届C学长一起。',
+        seniorDesc12: '与浙江大学18届U学长一起。',
       },
       we: {
         current: '至今',
