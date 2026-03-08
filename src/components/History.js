@@ -186,7 +186,6 @@ const History = () => {
     itemRefs.current[index]?.scrollIntoView({ behavior: 'smooth', block: 'center' });
   };
 
-  const years = [...new Set(SORTED_EVENTS.map((e) => getYear(e.date)))].reverse();
   const eventsWithYears = [];
   SORTED_EVENTS.forEach((event, i) => {
     const year = getYear(event.date);
