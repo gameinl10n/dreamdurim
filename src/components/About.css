@@ -110,7 +110,7 @@
 .about-seniors-logos {
   display: flex;
   align-items: center;
-  gap: 120px;
+  gap: 72px;
 }
 
 .about-seniors-logos--scroll {
@@ -313,7 +313,7 @@
     justify-content: center;
   }
   .about-seniors-logos {
-    gap: 80px;
+    gap: 48px;
   }
   .about-logo-slot,
   .about-logo-slot-wrap a {
