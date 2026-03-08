@@ -32,7 +32,11 @@ const resources = {
         roleGen2TeamLead: 'Gen 2 Team Lead',
       },
       history: {
-        updating: '업데이트 준비중',
+        title: 'HISTORY',
+        event1: '꿈드림 설립',
+        event2: '1기 팀 리드 시작',
+        event3: '활동 진행',
+        event4: '2기 팀 리드 시작',
       },
       footer: {
         title: '꿈드림',
@@ -74,7 +78,11 @@ const resources = {
         roleGen2TeamLead: 'Gen 2 Team Lead',
       },
       history: {
-        updating: 'Update in progress',
+        title: 'HISTORY',
+        event1: 'DreamDurim founded',
+        event2: 'Gen 1 team lead started',
+        event3: 'Activities in progress',
+        event4: 'Gen 2 team lead started',
       },
       footer: {
         title: 'DreamDurim',
@@ -116,7 +124,11 @@ const resources = {
         roleGen2TeamLead: '二届队长',
       },
       history: {
-        updating: '更新准备中',
+        title: '历史',
+        event1: '梦梦成立',
+        event2: '一届队长上任',
+        event3: '活动进行中',
+        event4: '二届队长上任',
       },
       footer: {
         title: '梦梦',

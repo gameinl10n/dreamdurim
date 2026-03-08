@@ -1,19 +1,241 @@
-.history-container {
-  margin-top: 80px;
-  padding: 80px 40px;
-  min-height: calc(100vh - 200px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.history {
+  min-height: 100vh;
+  padding: 120px 24px 80px;
   background-color: var(--bg-primary);
   opacity: 0;
   animation: fadeInPage 0.8s ease-in-out forwards;
 }
 
-.history-placeholder {
-  font-size: 18px;
-  font-weight: 500;
-  color: var(--text-muted);
+.history-header {
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.history-title {
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-primary);
   margin: 0;
-  letter-spacing: 0.5px;
+}
+
+/* Timeline */
+.history-timeline {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.history-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  margin-left: -1px;
+  background: linear-gradient(
+    180deg,
+    var(--accent-color) 0%,
+    var(--border-color) 100%
+  );
+  border-radius: 1px;
+}
+
+/* Timeline item - zigzag layout */
+.history-item {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  padding-bottom: 48px;
+  opacity: 0;
+  transition:
+    opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.history-item--left {
+  transform: translateX(-20px);
+}
+
+.history-item--left.history-item--visible {
+  transform: translateX(0);
+}
+
+.history-item--right {
+  transform: translateX(20px);
+}
+
+.history-item--right.history-item--visible {
+  transform: translateX(0);
+}
+
+.history-item:last-child {
+  padding-bottom: 0;
+}
+
+.history-item--visible {
+  opacity: 1;
+}
+
+/* Left/right slots - each takes ~45% */
+.history-item-slot {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: flex-start;
+}
+
+.history-item-slot--content:first-child {
+  justify-content: flex-end;
+  padding-right: 32px;
+}
+
+.history-item-slot--content:last-child {
+  justify-content: flex-start;
+  padding-left: 32px;
+}
+
+.history-item-slot--empty {
+  min-height: 1px;
+}
+
+/* Marker (dot on center line) */
+.history-item-marker {
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.history-item-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: var(--accent-color);
+  box-shadow:
+    0 0 0 4px var(--bg-primary),
+    0 0 12px rgba(255, 107, 107, 0.4);
+}
+
+[data-theme='light'] .history-item-dot {
+  box-shadow:
+    0 0 0 4px var(--bg-primary),
+    0 0 0 2px var(--border-color),
+    0 2px 8px rgba(255, 107, 107, 0.3);
+}
+
+/* Content card */
+.history-item-content {
+  max-width: 360px;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  overflow: hidden;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.history-item-content:hover {
+  border-color: var(--text-muted);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Image (full width, top of card) */
+.history-item-image-wrap {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background-color: var(--border-color);
+  overflow: hidden;
+}
+
+.history-item-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.history-item-body {
+  padding: 20px 24px;
+}
+
+.history-item-date {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--accent-color);
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.history-item-desc {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+@media (max-width: 600px) {
+  .history {
+    padding: 100px 16px 60px;
+  }
+
+  .history-header {
+    margin-bottom: 48px;
+  }
+
+  .history-title {
+    font-size: 24px;
+  }
+
+  .history-item {
+    padding-bottom: 36px;
+  }
+
+  .history-item-slot--content:first-child {
+    padding-right: 16px;
+  }
+
+  .history-item-slot--content:last-child {
+    padding-left: 16px;
+  }
+
+  .history-item-marker {
+    width: 20px;
+    height: 20px;
+  }
+
+  .history-item-dot {
+    width: 12px;
+    height: 12px;
+    box-shadow:
+      0 0 0 3px var(--bg-primary),
+      0 0 8px rgba(255, 107, 107, 0.3);
+  }
+
+  .history-item-content {
+    max-width: none;
+  }
+
+  .history-item-image-wrap {
+    aspect-ratio: 4 / 3;
+  }
+
+  .history-item-body {
+    padding: 16px 18px;
+  }
+
+  .history-item-date {
+    font-size: 13px;
+  }
+
+  .history-item-desc {
+    font-size: 15px;
+  }
 }
