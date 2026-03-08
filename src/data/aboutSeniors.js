@@ -50,4 +50,11 @@ export const ABOUT_SENIORS = [
     descKey: 'about.seniorDesc9',
     url: '',
   },
+  {
+    id: 10,
+    name: 'YORIGO',
+    logo: `${process.env.PUBLIC_URL || ''}/images/about/YORIGO.png`,
+    descKey: 'about.seniorDesc10',
+    url: '',
+  },
 ];
