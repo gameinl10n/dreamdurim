@@ -37,7 +37,7 @@ const Navbar = memo(() => {
     <nav className="navbar" aria-label="메인 네비게이션">
       <div className="navbar-container">
         <Link to={ROUTES.ABOUT} className="navbar-logo" onClick={closeMenu}>
-          {t('nav.logo')}
+          <img src={`${process.env.PUBLIC_URL || ''}/images/logo.png`} alt={t('nav.logo')} className="navbar-logo-img" />
         </Link>
         <div className={`navbar-menu ${menuOpen ? 'open' : ''}`}>
           <Link to={ROUTES.ABOUT} className={`navbar-link ${isActive.about ? 'active' : ''}`} onClick={closeMenu}>

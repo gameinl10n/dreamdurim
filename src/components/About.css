@@ -9,6 +9,7 @@
 
 .about-hero {
   flex: 1;
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,6 +17,156 @@
   text-align: center;
   padding: 80px 24px;
   min-height: min(60vh, 400px);
+}
+
+/* 떠다니는 별 - 타이틀 주변, 겹치지 않게 */
+.about-testimonial-star-icon {
+  display: block;
+  text-shadow: var(--about-star-icon-shadow, 0 0 6px rgba(255, 255, 255, 0.6), 0 0 12px rgba(255, 217, 61, 0.35));
+  filter: var(--about-star-icon-filter, drop-shadow(0 0 4px rgba(255, 255, 255, 0.4)));
+  animation: about-star-glow 3s ease-in-out infinite;
+}
+
+.about-testimonial-star:nth-child(1) .about-testimonial-star-icon { animation-delay: 0s; }
+.about-testimonial-star:nth-child(2) .about-testimonial-star-icon { animation-delay: 0.4s; }
+.about-testimonial-star:nth-child(3) .about-testimonial-star-icon { animation-delay: 0.8s; }
+.about-testimonial-star:nth-child(4) .about-testimonial-star-icon { animation-delay: 1.2s; }
+.about-testimonial-star:nth-child(5) .about-testimonial-star-icon { animation-delay: 1.6s; }
+
+.about-testimonial-star {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: var(--about-star-color, rgba(255, 255, 255, 0.9));
+  font-size: 20px;
+  opacity: 0.9;
+  transition: color 0.2s, opacity 0.2s, transform 0.2s, filter 0.2s;
+  animation: about-star-float 6s ease-in-out infinite;
+  z-index: 1;
+}
+
+.about-testimonial-star:nth-child(1) { animation-delay: 0s; }
+.about-testimonial-star:nth-child(2) { animation-delay: 0.8s; }
+.about-testimonial-star:nth-child(3) { animation-delay: 1.6s; }
+.about-testimonial-star:nth-child(4) { animation-delay: 2.4s; }
+.about-testimonial-star:nth-child(5) { animation-delay: 3.2s; }
+
+.about-testimonial-star:hover,
+.about-testimonial-star:focus-visible,
+.about-testimonial-star--pinned,
+.about-testimonial-star--hovered {
+  color: var(--about-star-color-hover, #fff);
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1.15);
+}
+
+.about-testimonial-star:hover .about-testimonial-star-icon,
+.about-testimonial-star:focus-visible .about-testimonial-star-icon,
+.about-testimonial-star--pinned .about-testimonial-star-icon,
+.about-testimonial-star--hovered .about-testimonial-star-icon {
+  text-shadow: var(--about-star-icon-shadow-hover, 0 0 10px rgba(255, 255, 255, 0.9), 0 0 20px rgba(255, 217, 61, 0.6));
+  filter: var(--about-star-icon-filter-hover, drop-shadow(0 0 8px rgba(255, 255, 255, 0.6)));
+}
+
+@keyframes about-star-glow {
+  0%, 100% {
+    opacity: 0.9;
+    filter: var(--about-star-icon-filter, drop-shadow(0 0 4px rgba(255, 255, 255, 0.4)));
+  }
+  50% {
+    opacity: 1;
+    filter: var(--about-star-icon-filter-glow, drop-shadow(0 0 10px rgba(255, 255, 255, 0.7)) drop-shadow(0 0 15px rgba(255, 217, 61, 0.4)));
+  }
+}
+
+/* PC: 화면 중앙 고정 상자 */
+.about-testimonial-center-box {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: min(480px, calc(100vw - 48px));
+  max-height: 70vh;
+  padding: 20px 24px;
+  background: var(--bg-secondary, #2a2a2a);
+  color: var(--text-primary, #fff);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.6;
+  text-align: left;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  border: 1px solid var(--border-color, #444);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+  z-index: 20;
+  animation: about-center-box-in 0.2s ease-out;
+}
+
+@keyframes about-center-box-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.about-testimonial-center-box::-webkit-scrollbar {
+  display: none;
+}
+
+.about-testimonial-center-box-text {
+  display: block;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.about-testimonial-center-box-author {
+  display: block;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  font-size: 12px;
+  color: var(--text-muted, #999);
+}
+
+/* 호버 시 작성자만 표시 (별 아래) */
+.about-testimonial-star-hover-author {
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translateX(-50%) translateY(6px);
+  padding: 4px 10px;
+  background: var(--bg-secondary, #2a2a2a);
+  color: var(--text-muted, #999);
+  font-size: 11px;
+  white-space: nowrap;
+  border-radius: 6px;
+  border: 1px solid var(--border-color, #444);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.2s, visibility 0.2s, transform 0.2s;
+  z-index: 5;
+}
+
+.about-testimonial-star-hover-author--visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(8px);
+}
+
+@keyframes about-star-float {
+  0%, 100% { transform: translate(-50%, -50%) translateY(0); }
+  50% { transform: translate(-50%, -50%) translateY(-8px); }
 }
 
 .about-intro {
@@ -270,6 +421,13 @@
 
 /* 다크 모드 */
 [data-theme='dark'] {
+  --about-star-color: rgba(255, 255, 255, 0.9);
+  --about-star-color-hover: #fff;
+  --about-star-icon-shadow: 0 0 6px rgba(255, 255, 255, 0.6), 0 0 12px rgba(255, 217, 61, 0.35), 0 0 20px rgba(255, 200, 50, 0.2);
+  --about-star-icon-filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.4));
+  --about-star-icon-shadow-hover: 0 0 10px rgba(255, 255, 255, 0.9), 0 0 20px rgba(255, 217, 61, 0.6), 0 0 35px rgba(255, 200, 50, 0.4);
+  --about-star-icon-filter-hover: drop-shadow(0 0 8px rgba(255, 255, 255, 0.6));
+  --about-star-icon-filter-glow: drop-shadow(0 0 10px rgba(255, 255, 255, 0.7)) drop-shadow(0 0 15px rgba(255, 217, 61, 0.4));
   --about-title-color: #ffffff;
   --about-text-muted: #999;
   --about-text-secondary: #cccccc;
@@ -284,6 +442,13 @@
 
 /* 라이트 모드 (명시) */
 [data-theme='light'] {
+  --about-star-color: rgba(80, 60, 20, 0.95);
+  --about-star-color-hover: #5c4314;
+  --about-star-icon-shadow: 0 0 6px rgba(255, 180, 50, 0.5), 0 0 12px rgba(218, 165, 32, 0.35);
+  --about-star-icon-filter: drop-shadow(0 0 3px rgba(180, 140, 40, 0.5));
+  --about-star-icon-shadow-hover: 0 0 10px rgba(255, 180, 50, 0.7), 0 0 20px rgba(218, 165, 32, 0.5);
+  --about-star-icon-filter-hover: drop-shadow(0 0 6px rgba(180, 140, 40, 0.6));
+  --about-star-icon-filter-glow: drop-shadow(0 0 8px rgba(255, 180, 50, 0.6)) drop-shadow(0 0 12px rgba(218, 165, 32, 0.4));
   --about-title-color: #000000;
   --about-text-muted: #888;
   --about-text-secondary: #333;
@@ -296,7 +461,36 @@
   --about-skeleton-bg: linear-gradient(90deg, #eee 25%, #f5f5f5 50%, #eee 75%);
 }
 
+/* 모바일: 후기 안내 문구 */
+.about-testimonial-mobile-notice {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 20px;
+  background: var(--bg-secondary, #2a2a2a);
+  color: var(--text-primary, #fff);
+  font-size: 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color, #444);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  z-index: 100;
+  animation: about-notice-fade 2.5s ease-in-out forwards;
+  pointer-events: none;
+}
+
+@keyframes about-notice-fade {
+  0% { opacity: 0; transform: translateX(-50%) translateY(10px); }
+  10% { opacity: 1; transform: translateX(-50%) translateY(0); }
+  85% { opacity: 1; transform: translateX(-50%) translateY(0); }
+  100% { opacity: 0; transform: translateX(-50%) translateY(-8px); }
+}
+
 @media (max-width: 768px) {
+  .about-testimonial-center-box,
+  .about-testimonial-star-hover-author {
+    display: none !important;
+  }
   .about-title {
     font-size: 36px;
   }

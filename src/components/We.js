@@ -86,7 +86,7 @@ const We = () => {
   return (
     <div className="we-container" ref={containerRef}>
       <Helmet>
-        <title>{t('meta.weTitle')}</title>
+        <title>{t('meta.siteTitle')}</title>
         <meta name="description" content={t('meta.weDesc')} />
       </Helmet>
       <div className="we-profiles we-profiles--founders">

@@ -1,4 +1,5 @@
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense, lazy, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { ThemeProvider } from './context/ThemeContext';
@@ -54,8 +55,44 @@ function AppContent() {
 }
 
 function App() {
+  const { t } = useTranslation();
+  const [contextMenuTip, setContextMenuTip] = useState(null);
+
+  useEffect(() => {
+    const handleContextMenu = (e) => {
+      e.preventDefault();
+      setContextMenuTip(true);
+      setTimeout(() => setContextMenuTip(null), 2500);
+    };
+    const preventCopy = (e) => {
+      e.preventDefault();
+    };
+    const preventDrag = (e) => {
+      e.preventDefault();
+    };
+    document.addEventListener('contextmenu', handleContextMenu);
+    document.addEventListener('copy', preventCopy);
+    document.addEventListener('cut', preventCopy);
+    document.addEventListener('paste', preventCopy);
+    document.addEventListener('dragstart', preventDrag);
+    document.addEventListener('selectstart', preventCopy);
+    return () => {
+      document.removeEventListener('contextmenu', handleContextMenu);
+      document.removeEventListener('copy', preventCopy);
+      document.removeEventListener('cut', preventCopy);
+      document.removeEventListener('paste', preventCopy);
+      document.removeEventListener('dragstart', preventDrag);
+      document.removeEventListener('selectstart', preventCopy);
+    };
+  }, []);
+
   return (
     <ErrorBoundary>
+      {contextMenuTip && (
+        <div className="app-contextmenu-tooltip" role="status">
+          {t('contextMenuBlocked')}
+        </div>
+      )}
       <HelmetProvider>
         <ThemeProvider>
           <Router>

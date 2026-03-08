@@ -35,6 +35,42 @@
   min-height: 40vh;
 }
 
+/* 오른쪽 클릭 차단 안내 툴팁 - 화면 하단 */
+.app-contextmenu-tooltip {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 14px 24px;
+  background: var(--bg-secondary, #2a2a2a);
+  color: var(--text-primary, #fff);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+  border-radius: 12px;
+  border: 1px solid var(--border-color, #444);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.06) inset;
+  z-index: 9999;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  animation: app-contextmenu-tooltip-in 0.25s ease-out;
+  max-width: min(420px, calc(100vw - 48px));
+}
+
+@keyframes app-contextmenu-tooltip-in {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
 .visually-hidden {
   position: absolute;
   width: 1px;

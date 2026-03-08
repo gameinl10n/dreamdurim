@@ -7,7 +7,7 @@
   background-color: var(--navbar-bg);
   backdrop-filter: blur(10px);
   padding: 20px 0;
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--navbar-border, var(--border-color));
 }
 
 .navbar-container {
@@ -22,11 +22,9 @@
 }
 
 .navbar-logo {
-  font-size: 24px;
-  font-weight: 400;
-  color: var(--text-primary);
+  display: flex;
+  align-items: center;
   text-decoration: none;
-  letter-spacing: 0px;
   transition: opacity 0.3s ease;
   position: absolute;
   left: 40px;
@@ -36,6 +34,21 @@
 .navbar-logo:hover {
   opacity: 0.7;
   animation-play-state: paused;
+}
+
+.navbar-logo-img {
+  height: 168px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+
+[data-theme='dark'] .navbar-logo-img {
+  filter: brightness(1.5) contrast(1.2) drop-shadow(0 0 2px rgba(255, 255, 255, 0.4));
+}
+
+[data-theme='light'] .navbar-logo-img {
+  filter: none;
 }
 
 .navbar-right {
@@ -278,8 +291,10 @@
 
   .navbar-logo {
     position: static;
-    font-size: 18px;
-    letter-spacing: -0.5px;
+  }
+
+  .navbar-logo-img {
+    height: 136px;
   }
 
   .navbar-hamburger {
@@ -348,8 +363,8 @@
 }
 
 @media (max-width: 400px) {
-  .navbar-logo {
-    font-size: 16px;
+  .navbar-logo-img {
+    height: 112px;
   }
 
   .navbar-lang-btn {

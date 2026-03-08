@@ -184,6 +184,19 @@ const History = () => {
     return result;
   }, []);
 
+  const yearNavItems = useMemo(() => {
+    const seen = new Set();
+    const items = [];
+    SORTED_EVENTS.forEach((event, i) => {
+      const year = getYear(event.date);
+      if (!seen.has(year)) {
+        seen.add(year);
+        items.push({ year, firstIndex: i });
+      }
+    });
+    return items;
+  }, []);
+
   const schemaEvents = useMemo(
     () =>
       HISTORY_EVENTS.map((e) => ({
@@ -197,7 +210,7 @@ const History = () => {
   return (
     <div className="history" ref={containerRef}>
       <Helmet>
-        <title>{t('meta.historyTitle')}</title>
+        <title>{t('meta.siteTitle')}</title>
         <meta name="description" content={t('meta.historyDesc')} />
         <script type="application/ld+json">
           {JSON.stringify({
@@ -214,16 +227,15 @@ const History = () => {
       </div>
 
       <div className="history-header">
-        <h1 className="history-title">{t('history.title')}</h1>
-        <nav className="history-nav" aria-label="Timeline dates">
-          {SORTED_EVENTS.map((event, i) => (
+        <nav className="history-nav" aria-label="Timeline by year">
+          {yearNavItems.map(({ year, firstIndex }) => (
             <button
-              key={event.id}
+              key={year}
               type="button"
               className="history-nav-btn"
-              onClick={() => scrollToItem(i)}
+              onClick={() => scrollToItem(firstIndex)}
             >
-              {event.date}
+              {year}
             </button>
           ))}
         </nav>

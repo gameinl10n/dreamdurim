@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet-async';
 import { ABOUT_SENIORS } from '../data/aboutSeniors';
+import { TESTIMONIALS } from '../data/testimonials';
 import './About.css';
 
 const SCROLL_COPIES = 3;
@@ -57,19 +58,96 @@ const LogoSlot = ({ item, t }) => {
   return <div {...slotProps}>{content}</div>;
 };
 
+const MOBILE_BREAKPOINT = 768;
+
 const About = () => {
   const { t } = useTranslation();
   const [isPaused, setIsPaused] = useState(false);
+  const [pinnedStarId, setPinnedStarId] = useState(null);
+  const [hoveredStarId, setHoveredStarId] = useState(null);
+  const [mobileNoticeVisible, setMobileNoticeVisible] = useState(false);
+  const heroRef = useRef(null);
+  const centerBoxRef = useRef(null);
+
+  const handleStarClick = (itemId) => {
+    if (window.innerWidth <= MOBILE_BREAKPOINT) {
+      setMobileNoticeVisible(true);
+      setTimeout(() => setMobileNoticeVisible(false), 2500);
+      return;
+    }
+    setPinnedStarId((prev) => (prev === itemId ? null : itemId));
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (!pinnedStarId) return;
+      if (centerBoxRef.current?.contains(e.target)) return;
+      if (e.target.closest('.about-testimonial-star')) return;
+      setPinnedStarId(null);
+    };
+    const handleEscape = (e) => {
+      if (e.key === 'Escape') setPinnedStarId(null);
+    };
+    document.addEventListener('click', handleClickOutside);
+    document.addEventListener('keydown', handleEscape);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+      document.removeEventListener('keydown', handleEscape);
+    };
+  }, [pinnedStarId]);
 
   return (
     <div className="about">
       <Helmet>
-        <title>{t('meta.aboutTitle')}</title>
+        <title>{t('meta.siteTitle')}</title>
         <meta name="description" content={t('meta.aboutDesc')} />
       </Helmet>
-      <div className="about-hero">
+      <div className="about-hero" ref={heroRef}>
+        {TESTIMONIALS.map((item) => (
+          <button
+            key={item.id}
+            type="button"
+            className={`about-testimonial-star ${pinnedStarId === item.id ? 'about-testimonial-star--pinned' : ''} ${hoveredStarId === item.id ? 'about-testimonial-star--hovered' : ''}`}
+            style={{ left: item.position.left, top: item.position.top }}
+            aria-label={t('about.testimonialAria')}
+            aria-expanded={pinnedStarId === item.id}
+            onClick={() => handleStarClick(item.id)}
+            onMouseEnter={() => setHoveredStarId(item.id)}
+            onMouseLeave={() => setHoveredStarId(null)}
+          >
+            <span className="about-testimonial-star-icon" aria-hidden>✦</span>
+            {item.authorKey && (
+              <span
+                className={`about-testimonial-star-hover-author ${hoveredStarId === item.id ? 'about-testimonial-star-hover-author--visible' : ''}`}
+                role="tooltip"
+              >
+                {t(item.authorKey)}
+              </span>
+            )}
+          </button>
+        ))}
         <h1 className="about-title">{t('about.title')}</h1>
         <p className="about-intro">{t('about.intro')}</p>
+        {mobileNoticeVisible && (
+          <div className="about-testimonial-mobile-notice" role="status">
+            {t('about.testimonialMobileNotice')}
+          </div>
+        )}
+        {pinnedStarId && (() => {
+          const item = TESTIMONIALS.find((i) => i.id === pinnedStarId);
+          if (!item) return null;
+          return (
+            <div ref={centerBoxRef} className="about-testimonial-center-box" role="dialog" aria-label={t('about.testimonialAria')}>
+              <span
+                className="about-testimonial-center-box-text"
+                dangerouslySetInnerHTML={{ __html: t(item.textKey) }}
+              />
+              {item.authorKey && (
+                <span className="about-testimonial-center-box-author">{t(item.authorKey)}</span>
+              )}
+            </div>
+          );
+        })()}
       </div>
 
       <section className="about-seniors" aria-labelledby="about-seniors-heading">
