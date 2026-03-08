@@ -58,7 +58,7 @@ function App() {
     <ErrorBoundary>
       <HelmetProvider>
         <ThemeProvider>
-          <Router basename="/dreamdurim">
+          <Router>
             <AppContent />
           </Router>
         </ThemeProvider>
