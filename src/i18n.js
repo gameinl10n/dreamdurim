@@ -34,9 +34,9 @@ const resources = {
       history: {
         title: 'HISTORY',
         event1: '꿈드림 설립',
-        event2: '1기 팀 리드 시작',
-        event3: '활동 진행',
-        event4: '2기 팀 리드 시작',
+        event2: '꿈드림 1기 활동 시작',
+        event3: '꿈드림 제1회 멘토링 데이',
+        event4: '꿈드림 2기 활동 시작',
       },
       footer: {
         title: '꿈드림',
@@ -80,9 +80,9 @@ const resources = {
       history: {
         title: 'HISTORY',
         event1: 'DreamDurim founded',
-        event2: 'Gen 1 team lead started',
-        event3: 'Activities in progress',
-        event4: 'Gen 2 team lead started',
+        event2: 'DreamDurim Gen 1 activities started',
+        event3: 'DreamDurim 1st Mentoring Day',
+        event4: 'DreamDurim Gen 2 activities started',
       },
       footer: {
         title: 'DreamDurim',
@@ -126,9 +126,9 @@ const resources = {
       history: {
         title: '历史',
         event1: '梦梦成立',
-        event2: '一届队长上任',
-        event3: '活动进行中',
-        event4: '二届队长上任',
+        event2: '梦梦一届活动开始',
+        event3: '梦梦第一届导师日',
+        event4: '梦梦二届活动开始',
       },
       footer: {
         title: '梦梦',
