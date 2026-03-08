@@ -32,11 +32,11 @@ export const WE_MEMBERS = [
     group: 'founder',
     name: '유승호',
     school: '절강대학교',
-    studentId: '19학번',
+    studentId: '20학번',
     career: {
       former: [
-        { company: 'hackseoul', role: '1st Prize' },
-        { company: 'NetEaseGames', role: 'Intern' },
+        { company: 'hackseoul', role: '1st Prize Winner(Team Yorigo)' },
+        { company: 'NetEaseGames', role: ' Korean Operations Intern' },
       ],
       current: { company: 'Yorigo', role: 'Chief Executive Officer' },
     },
@@ -60,7 +60,7 @@ export const WE_MEMBERS = [
     teamLeadPeriod: '2026.03 - 현재',
     name: '박지원',
     school: '절강대학교',
-    studentId: '22학번',
+    studentId: '24학번',
     career: { former: [], current: { company: '', role: '' } },
     image: `${process.env.PUBLIC_URL || ''}/images/we/team-lead2.jpg`,
   },

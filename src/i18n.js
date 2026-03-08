@@ -21,7 +21,7 @@ const resources = {
         seniorDesc2: '절강대학교 16학번 H선배님과 함께하고 있습니다',
         seniorDesc3: '절강대학교 18학번 H선배님과 함께하고 있습니다',
         seniorDesc4: '절강대학교 19학번 N선배님과 함께하고 있습니다',
-        seniorDesc5: '절강대학교 20학번 선배님과 함께하고 있습니다',
+        seniorDesc5: '절강대학교 21학번 선배님과 함께하고 있습니다',
         seniorDesc6: '절강대학교 18학번 선배님과 함께하고 있습니다',
       },
       we: {
@@ -37,6 +37,10 @@ const resources = {
         event2: '꿈드림 1기 활동 시작',
         event3: '꿈드림 제1회 멘토링 데이',
         event4: '꿈드림 2기 활동 시작',
+        readMore: '자세히 보기',
+        readLess: '접기',
+        viewLarger: '크게 보기',
+        closeLightbox: '닫기',
       },
       footer: {
         title: '꿈드림',
@@ -83,6 +87,10 @@ const resources = {
         event2: 'DreamDurim Gen 1 activities started',
         event3: 'DreamDurim 1st Mentoring Day',
         event4: 'DreamDurim Gen 2 activities started',
+        readMore: 'Read more',
+        readLess: 'Show less',
+        viewLarger: 'View larger',
+        closeLightbox: 'Close',
       },
       footer: {
         title: 'DreamDurim',
@@ -129,6 +137,10 @@ const resources = {
         event2: '梦梦一届活动开始',
         event3: '梦梦第一届导师日',
         event4: '梦梦二届活动开始',
+        readMore: '了解更多',
+        readLess: '收起',
+        viewLarger: '放大查看',
+        closeLightbox: '关闭',
       },
       footer: {
         title: '梦梦',
