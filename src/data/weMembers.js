@@ -1,7 +1,9 @@
 export const ROLE_KEYS = {
   'Co-Founder': 'we.roleCoFounder',
-  'Gen 1 Team Lead': 'we.roleGen1TeamLead',
-  'Gen 2 Team Lead': 'we.roleGen2TeamLead',
+  'Co-Founder · CTO': 'we.roleCoFounderCto',
+  'Co-Founder · CEO': 'we.roleCoFounderCeo',
+  'Team Lead · Gen 1': 'we.roleGen1TeamLead',
+  'Team Lead · Gen 2': 'we.roleGen2TeamLead',
 };
 
 // career: current(현) = 맨 위(최신), former(전) = 그 아래
@@ -44,7 +46,7 @@ export const WE_MEMBERS = [
   },
   {
     id: 4,
-    role: 'Gen 1 Team Lead',
+    role: 'Team Lead · Gen 1',
     group: 'team',
     teamLeadPeriod: '2025.12 - 2026.02',
     name: '천은서',
@@ -55,7 +57,7 @@ export const WE_MEMBERS = [
   },
   {
     id: 3,
-    role: 'Gen 2 Team Lead',
+    role: 'Team Lead · Gen 2',
     group: 'team',
     teamLeadPeriod: '2026.03 - 현재',
     name: '박지원',
