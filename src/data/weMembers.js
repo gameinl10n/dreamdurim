@@ -60,7 +60,7 @@ export const WE_MEMBERS = [
     teamLeadPeriod: '2026.03 - 현재',
     name: '박지원',
     school: '절강대학교',
-    studentId: '24학번',
+    studentId: '23학번',
     career: { former: [], current: { company: '', role: '' } },
     image: `${process.env.PUBLIC_URL || ''}/images/we/team-lead2.jpg`,
   },
