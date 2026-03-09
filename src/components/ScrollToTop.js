@@ -1,11 +1,14 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
+import { SCROLL_TO_TOP_THRESHOLD } from '../constants/scroll';
 import './ScrollToTop.css';
 
 const ScrollToTop = () => {
+  const { t } = useTranslation();
   const [isVisible, setIsVisible] = useState(false);
 
   const toggleVisibility = useCallback(() => {
-    setIsVisible(window.scrollY > 300);
+    setIsVisible(window.scrollY > SCROLL_TO_TOP_THRESHOLD);
   }, []);
 
   useEffect(() => {
@@ -24,7 +27,7 @@ const ScrollToTop = () => {
     <button
       className={`scroll-to-top ${isVisible ? 'visible' : ''}`}
       onClick={scrollToTop}
-      aria-label="Scroll to top"
+      aria-label={t('common.scrollToTop')}
     >
       <svg
         width="24"

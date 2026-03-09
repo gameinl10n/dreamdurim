@@ -1,5 +1,6 @@
+import { getImagePath } from '../utils/assets';
+
 export const ROLE_KEYS = {
-  'Co-Founder': 'we.roleCoFounder',
   'Co-Founder · CTO': 'we.roleCoFounderCto',
   'Co-Founder · CEO': 'we.roleCoFounderCeo',
   'Team Lead · Gen 1': 'we.roleGen1TeamLead',
@@ -26,7 +27,7 @@ export const WE_MEMBERS = [
       ],
       current: { company: 'Hypergryph', role: 'Localization Korean Team Lead' },
     },
-    image: `${process.env.PUBLIC_URL || ''}/images/we/co-founder1.JPG`,
+    image: getImagePath('/images/we/co-founder1.JPG'),
   },
   {
     id: 2,
@@ -42,7 +43,7 @@ export const WE_MEMBERS = [
       ],
       current: { company: 'Yorigo', role: 'Chief Executive Officer' },
     },
-    image: `${process.env.PUBLIC_URL || ''}/images/we/co-founder2.jpg`,
+    image: getImagePath('/images/we/co-founder2.jpg'),
   },
   {
     id: 4,
@@ -53,7 +54,7 @@ export const WE_MEMBERS = [
     school: '절강대학교',
     studentId: '24',
     career: { former: [], current: { company: 'Alibaba', role: 'Strategic Analysis Intern' } },
-    image: `${process.env.PUBLIC_URL || ''}/images/we/team-lead1.jpg`,
+    image: getImagePath('/images/we/team-lead1.jpg'),
   },
   {
     id: 3,
@@ -64,6 +65,6 @@ export const WE_MEMBERS = [
     school: '절강대학교',
     studentId: '23',
     career: { former: [], current: { company: '', role: '' } },
-    image: `${process.env.PUBLIC_URL || ''}/images/we/team-lead2.jpg`,
+    image: getImagePath('/images/we/team-lead2.jpg'),
   },
 ];

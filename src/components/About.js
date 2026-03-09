@@ -1,16 +1,19 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Helmet } from 'react-helmet-async';
+import { useCloseOnEscape } from '../hooks/useCloseOnEscape';
+import PageHead from './PageHead';
+import { MOBILE_BREAKPOINT } from '../constants/breakpoints';
+import { MOBILE_NOTICE_DURATION } from '../constants/timing';
 import { ABOUT_SENIORS } from '../data/aboutSeniors';
-import { TESTIMONIALS } from '../data/testimonials';
+import { MEMBER_REVIEWS } from '../data/memberReviews';
 import './About.css';
 
-const SCROLL_COPIES = 3;
-const SCROLL_ITEMS = Array(SCROLL_COPIES)
+const INFINITE_SCROLL_DUPLICATES = 3;
+const SCROLL_ITEMS = Array(INFINITE_SCROLL_DUPLICATES)
   .fill(null)
   .flatMap((_, batch) => ABOUT_SENIORS.map((item) => ({ ...item, key: `${batch}-${item.id}` })));
 
-const LogoSlot = ({ item, t }) => {
+const SeniorLogoSlot = ({ item, t }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const isClickable = Boolean(item.url);
   const description = item.descKey ? t(item.descKey) : '';
@@ -43,7 +46,7 @@ const LogoSlot = ({ item, t }) => {
     title: description,
     tabIndex: isClickable ? 0 : undefined,
     role: isClickable ? 'link' : undefined,
-    'aria-label': isClickable ? `${item.name} - ${t('about.openInNewWindow')}` : item.name,
+    'aria-label': isClickable ? `${item.name} - ${t('common.openInNewWindow')}` : item.name,
     'aria-describedby': description ? `tooltip-${item.key}` : undefined,
   };
 
@@ -58,67 +61,55 @@ const LogoSlot = ({ item, t }) => {
   return <div {...slotProps}>{content}</div>;
 };
 
-const MOBILE_BREAKPOINT = 768;
-
 const About = () => {
   const { t } = useTranslation();
   const [isPaused, setIsPaused] = useState(false);
   const [pinnedStarId, setPinnedStarId] = useState(null);
   const [hoveredStarId, setHoveredStarId] = useState(null);
   const [mobileNoticeVisible, setMobileNoticeVisible] = useState(false);
-  const heroRef = useRef(null);
   const centerBoxRef = useRef(null);
 
   const handleStarClick = (itemId) => {
     if (window.innerWidth <= MOBILE_BREAKPOINT) {
       setMobileNoticeVisible(true);
-      setTimeout(() => setMobileNoticeVisible(false), 2500);
+      setTimeout(() => setMobileNoticeVisible(false), MOBILE_NOTICE_DURATION);
       return;
     }
     setPinnedStarId((prev) => (prev === itemId ? null : itemId));
   };
 
+  useCloseOnEscape(() => setPinnedStarId(null), !!pinnedStarId);
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (!pinnedStarId) return;
       if (centerBoxRef.current?.contains(e.target)) return;
-      if (e.target.closest('.about-testimonial-star')) return;
+      if (e.target.closest('.about-review-star')) return;
       setPinnedStarId(null);
     };
-    const handleEscape = (e) => {
-      if (e.key === 'Escape') setPinnedStarId(null);
-    };
     document.addEventListener('click', handleClickOutside);
-    document.addEventListener('keydown', handleEscape);
-    return () => {
-      document.removeEventListener('click', handleClickOutside);
-      document.removeEventListener('keydown', handleEscape);
-    };
+    return () => document.removeEventListener('click', handleClickOutside);
   }, [pinnedStarId]);
 
   return (
     <div className="about">
-      <Helmet>
-        <title>{t('meta.siteTitle')}</title>
-        <meta name="description" content={t('meta.aboutDesc')} />
-      </Helmet>
-      <div className="about-hero" ref={heroRef}>
-        {TESTIMONIALS.map((item) => (
+      <PageHead descKey="meta.aboutDesc" />
+      <div className="about-hero">
+        {MEMBER_REVIEWS.map((item) => (
           <button
             key={item.id}
             type="button"
-            className={`about-testimonial-star ${pinnedStarId === item.id ? 'about-testimonial-star--pinned' : ''} ${hoveredStarId === item.id ? 'about-testimonial-star--hovered' : ''}`}
+            className={`about-review-star ${pinnedStarId === item.id ? 'about-review-star--pinned' : ''} ${hoveredStarId === item.id ? 'about-review-star--hovered' : ''}`}
             style={{ left: item.position.left, top: item.position.top }}
-            aria-label={t('about.testimonialAria')}
+            aria-label={t('about.reviewAria')}
             aria-expanded={pinnedStarId === item.id}
             onClick={() => handleStarClick(item.id)}
             onMouseEnter={() => setHoveredStarId(item.id)}
             onMouseLeave={() => setHoveredStarId(null)}
           >
-            <span className="about-testimonial-star-icon" aria-hidden>✦</span>
+            <span className="about-review-star-icon" aria-hidden>✦</span>
             {item.authorKey && (
               <span
-                className={`about-testimonial-star-hover-author ${hoveredStarId === item.id ? 'about-testimonial-star-hover-author--visible' : ''}`}
+                className={`about-review-star-hover-author ${hoveredStarId === item.id ? 'about-review-star-hover-author--visible' : ''}`}
                 role="tooltip"
               >
                 {t(item.authorKey)}
@@ -129,21 +120,21 @@ const About = () => {
         <h1 className="about-title">{t('about.title')}</h1>
         <p className="about-intro">{t('about.intro')}</p>
         {mobileNoticeVisible && (
-          <div className="about-testimonial-mobile-notice" role="status">
-            {t('about.testimonialMobileNotice')}
+          <div className="about-review-mobile-notice" role="status">
+            {t('about.reviewMobileNotice')}
           </div>
         )}
         {pinnedStarId && (() => {
-          const item = TESTIMONIALS.find((i) => i.id === pinnedStarId);
+          const item = MEMBER_REVIEWS.find((i) => i.id === pinnedStarId);
           if (!item) return null;
           return (
-            <div ref={centerBoxRef} className="about-testimonial-center-box" role="dialog" aria-label={t('about.testimonialAria')}>
+            <div ref={centerBoxRef} className="about-review-center-box" role="dialog" aria-label={t('about.reviewAria')}>
               <span
-                className="about-testimonial-center-box-text"
+                className="about-review-center-box-text"
                 dangerouslySetInnerHTML={{ __html: t(item.textKey) }}
               />
               {item.authorKey && (
-                <span className="about-testimonial-center-box-author">{t(item.authorKey)}</span>
+                <span className="about-review-center-box-author">{t(item.authorKey)}</span>
               )}
             </div>
           );
@@ -170,7 +161,7 @@ const About = () => {
           >
             {SCROLL_ITEMS.map((item) => (
               <div key={item.key} role="listitem" className="about-logo-slot-wrap">
-                <LogoSlot item={item} t={t} />
+                <SeniorLogoSlot item={item} t={t} />
               </div>
             ))}
           </div>

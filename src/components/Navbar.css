@@ -6,7 +6,7 @@
   z-index: 1000;
   background-color: var(--navbar-bg);
   backdrop-filter: blur(10px);
-  padding: 20px 0;
+  padding: calc(20px + env(safe-area-inset-top, 0px)) 0 20px;
   border-bottom: 1px solid var(--navbar-border, var(--border-color));
 }
 
@@ -280,11 +280,11 @@
 
 @media (max-width: 768px) {
   .navbar {
-    padding: 12px 0;
+    padding: calc(16px + env(safe-area-inset-top, 0px)) 0 12px 0;
   }
 
   .navbar-container {
-    padding: 0 16px;
+    padding: 0 16px 0 4px;
     gap: 16px;
     justify-content: space-between;
   }
@@ -299,6 +299,7 @@
 
   .navbar-hamburger {
     display: flex;
+    margin-right: 12px;
   }
 
   .navbar-menu {
@@ -342,7 +343,6 @@
 
   .navbar-right {
     position: static;
-    margin-left: 0;
     gap: 8px;
   }
 

@@ -129,9 +129,10 @@
 .we-profile-content {
   margin-top: 20px;
   text-align: center;
-  padding: 0 8px;
+  padding: 20px 24px;
   transition: color 0.3s ease;
 }
+
 
 .we-profile-role {
   display: block;
@@ -267,7 +268,7 @@
 
 @media (max-width: 768px) {
   .we-container {
-    padding: 100px 20px 60px;
+    padding: calc(164px + env(safe-area-inset-top, 0px)) 20px 60px;
   }
 
   .we-profiles {

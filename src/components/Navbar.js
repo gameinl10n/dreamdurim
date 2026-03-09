@@ -2,6 +2,7 @@ import React, { useMemo, memo, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '../context/ThemeContext';
+import { getImagePath } from '../utils/assets';
 import { ROUTES } from '../constants/routes';
 import './Navbar.css';
 
@@ -26,6 +27,7 @@ const Navbar = memo(() => {
     const path = location.pathname;
     return {
       about: path === ROUTES.ABOUT,
+      activities: path === ROUTES.ACTIVITIES,
       we: path === ROUTES.WE,
       history: path === ROUTES.HISTORY,
     };
@@ -34,14 +36,17 @@ const Navbar = memo(() => {
   const closeMenu = () => setMenuOpen(false);
 
   return (
-    <nav className="navbar" aria-label="메인 네비게이션">
+    <nav className="navbar" aria-label={t('nav.ariaMainNav')}>
       <div className="navbar-container">
         <Link to={ROUTES.ABOUT} className="navbar-logo" onClick={closeMenu}>
-          <img src={`${process.env.PUBLIC_URL || ''}/images/logo.png`} alt={t('nav.logo')} className="navbar-logo-img" />
+          <img src={getImagePath('/images/logo.png')} alt={t('nav.logo')} className="navbar-logo-img" />
         </Link>
         <div className={`navbar-menu ${menuOpen ? 'open' : ''}`}>
           <Link to={ROUTES.ABOUT} className={`navbar-link ${isActive.about ? 'active' : ''}`} onClick={closeMenu}>
             {t('nav.about')}
+          </Link>
+          <Link to={ROUTES.ACTIVITIES} className={`navbar-link ${isActive.activities ? 'active' : ''}`} onClick={closeMenu}>
+            {t('nav.activities')}
           </Link>
           <Link to={ROUTES.WE} className={`navbar-link ${isActive.we ? 'active' : ''}`} onClick={closeMenu}>
             {t('nav.we')}
@@ -51,7 +56,7 @@ const Navbar = memo(() => {
           </Link>
         </div>
         <div className="navbar-right">
-          <div className="navbar-lang" role="group" aria-label="Language">
+          <div className="navbar-lang" role="group" aria-label={t('nav.ariaLanguage')}>
             {LANG_OPTIONS.map(({ code, label }) => (
               <button
                 key={code}
@@ -127,7 +132,7 @@ const Navbar = memo(() => {
             className={`navbar-hamburger ${menuOpen ? 'open' : ''}`}
             onClick={() => setMenuOpen(!menuOpen)}
             aria-expanded={menuOpen}
-            aria-label={menuOpen ? '메뉴 닫기' : '메뉴 열기'}
+            aria-label={menuOpen ? t('nav.menuClose') : t('nav.menuOpen')}
           >
             <span />
             <span />

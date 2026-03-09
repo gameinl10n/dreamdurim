@@ -1,14 +1,19 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
-import { Helmet } from 'react-helmet-async';
+import PageHead from './PageHead';
 import { WE_MEMBERS, ROLE_KEYS } from '../data/weMembers';
 import './We.css';
 
 const FOUNDERS = WE_MEMBERS.filter((m) => m.group === 'founder');
 const TEAM_LEADERS = WE_MEMBERS.filter((m) => m.group === 'team');
 
-const WeProfileCard = ({ member, isVisible, index, t }) => {
+const hasCareerContent = (member) =>
+  (member.career?.current && (member.career.current.company || member.career.current.role)) ||
+  (member.career?.former?.length > 0) ||
+  member.bio;
+
+const MemberProfileCard = ({ member, isVisible, index, t }) => {
   const roleLabel = ROLE_KEYS[member.role] ? t(ROLE_KEYS[member.role]) : member.role;
   const schoolLabel = member.school ? t('we.schoolName') : '';
   const teamLeadPeriodDisplay = member.teamLeadPeriod
@@ -50,10 +55,7 @@ const WeProfileCard = ({ member, isVisible, index, t }) => {
             {[schoolLabel, member.studentId ? t('we.studentIdFormat', { year: member.studentId }) : ''].filter(Boolean).join(' · ')}
           </p>
         )}
-        {((member.career?.current &&
-          (member.career.current.company || member.career.current.role)) ||
-          member.career?.former?.length > 0 ||
-          member.bio) && (
+        {hasCareerContent(member) && (
           <div className="we-profile-career">
             {member.career?.current && (
               <div className="we-profile-career-item we-profile-career-item--current">
@@ -85,13 +87,10 @@ const We = () => {
 
   return (
     <div className="we-container" ref={containerRef}>
-      <Helmet>
-        <title>{t('meta.siteTitle')}</title>
-        <meta name="description" content={t('meta.weDesc')} />
-      </Helmet>
+      <PageHead descKey="meta.weDesc" />
       <div className="we-profiles we-profiles--founders">
         {FOUNDERS.map((member, index) => (
-          <WeProfileCard
+          <MemberProfileCard
             key={member.id}
             member={member}
             isVisible={isVisible}
@@ -102,7 +101,7 @@ const We = () => {
       </div>
       <div className="we-profiles we-profiles--team">
         {TEAM_LEADERS.map((member, index) => (
-          <WeProfileCard
+          <MemberProfileCard
             key={member.id}
             member={member}
             isVisible={isVisible}
