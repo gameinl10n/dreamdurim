@@ -29,7 +29,7 @@ export const HISTORY_EVENTS = [
       en: 'DREAMDURIM job info sharing channel launched',
       zh: '朵林多领就业信息共享群开始运营',
     },
-    image: '',
+    image: '/images/history/event2.jpg',
   },
   {
     id: 3,
