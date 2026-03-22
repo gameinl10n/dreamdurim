@@ -20,10 +20,28 @@ const TimelineItem = ({ event, index, isVisible, isActive, descText, longDescTex
   const [imageError, setImageError] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [expanded, setExpanded] = useState(false);
+  const [imgRetry, setImgRetry] = useState(0);
   const isLeft = index % 2 === 0;
-  const imageSrc = event.image ? getImagePath(event.image) : null;
-  const showImage = imageSrc && !imageError;
+  const baseSrc = event.image ? getImagePath(event.image) : null;
+  const imageSrc =
+    baseSrc && imgRetry > 0 ? `${baseSrc}${baseSrc.includes('?') ? '&' : '?'}_=${imgRetry}` : baseSrc;
+  const showImage = baseSrc && !imageError;
   const hasLongDesc = Boolean(longDescText);
+
+  useEffect(() => {
+    setImageError(false);
+    setImageLoaded(false);
+    setImgRetry(0);
+  }, [event.id]);
+
+  const handleImgError = () => {
+    if (imgRetry === 0) {
+      setImgRetry(1);
+      setImageLoaded(false);
+    } else {
+      setImageError(true);
+    }
+  };
 
   const content = (
     <div
@@ -38,9 +56,10 @@ const TimelineItem = ({ event, index, isVisible, isActive, descText, longDescTex
             src={imageSrc}
             alt=""
             className={`history-item-image ${imageLoaded ? 'history-item-image--loaded' : ''}`}
-            loading="lazy"
+            loading={index < 4 ? 'eager' : 'lazy'}
+            decoding="async"
             onLoad={() => setImageLoaded(true)}
-            onError={() => setImageError(true)}
+            onError={handleImgError}
           />
         </div>
       )}
