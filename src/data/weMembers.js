@@ -1,6 +1,7 @@
 import { getImagePath } from '../utils/assets';
 
 export const ROLE_KEYS = {
+  'Co-Founder': 'we.roleCoFounder',
   'Co-Founder · CTO': 'we.roleCoFounderCto',
   'Co-Founder · CEO': 'we.roleCoFounderCeo',
   'Team Lead · Gen 1': 'we.roleGen1TeamLead',
@@ -44,6 +45,16 @@ export const WE_MEMBERS = [
       current: { company: 'Yorigo', role: 'Chief Executive Officer' },
     },
     image: getImagePath('/images/we/co-founder2.jpg'),
+  },
+  {
+    id: 5,
+    role: 'Co-Founder',
+    group: 'founder',
+    name: 'NOH HYEONCHEOL',
+    school: '절강대학교',
+    studentId: '19',
+    career: { former: [], current: { company: 'CJ LOGISTICS', role: 'Management Planning Team' } },
+    image: getImagePath('/images/we/co-founder3.jpg'),
   },
   {
     id: 4,
