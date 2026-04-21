@@ -125,8 +125,15 @@
 
 .about-review-center-box-text {
   display: block;
+  line-height: 1.72;
   overflow-wrap: break-word;
   word-break: break-word;
+}
+
+.about-review-center-box-text br {
+  content: '';
+  display: block;
+  margin-top: 10px;
 }
 
 .about-review-center-box-author {
@@ -180,6 +187,25 @@
     transform 0.3s ease,
     opacity 0.3s ease;
   animation: floatSlow 6s ease-in-out infinite 0.5s;
+}
+
+.about-founded-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 14px;
+  padding: 8px 14px;
+  color: var(--text-primary, #fff);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.about-founded-badge strong {
+  font-size: 18px;
+  line-height: 1;
+  letter-spacing: -0.4px;
 }
 
 .about-title {
@@ -449,16 +475,16 @@
   --about-star-icon-shadow-hover: 0 0 10px rgba(255, 180, 50, 0.7), 0 0 20px rgba(218, 165, 32, 0.5);
   --about-star-icon-filter-hover: drop-shadow(0 0 6px rgba(180, 140, 40, 0.6));
   --about-star-icon-filter-glow: drop-shadow(0 0 8px rgba(255, 180, 50, 0.6)) drop-shadow(0 0 12px rgba(218, 165, 32, 0.4));
-  --about-title-color: #000000;
-  --about-text-muted: #888;
-  --about-text-secondary: #333;
-  --about-section-bg: linear-gradient(180deg, #f8f8f8 0%, #f0f0f0 100%);
-  --about-border: #e8e8e8;
-  --about-card-bg: #ffffff;
-  --about-hover-bg: #eee;
-  --about-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-  --about-shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.1);
-  --about-skeleton-bg: linear-gradient(90deg, #eee 25%, #f5f5f5 50%, #eee 75%);
+  --about-title-color: #26221c;
+  --about-text-muted: #5f584d;
+  --about-text-secondary: #332d25;
+  --about-section-bg: linear-gradient(180deg, #f2eee5 0%, #ebe6dd 100%);
+  --about-border: #cfc6b6;
+  --about-card-bg: #e9e2d6;
+  --about-hover-bg: #e0d8ca;
+  --about-shadow: 0 2px 8px rgba(73, 60, 37, 0.1);
+  --about-shadow-hover: 0 4px 12px rgba(73, 60, 37, 0.16);
+  --about-skeleton-bg: linear-gradient(90deg, #d8d0c1 25%, #e6dfd2 50%, #d8d0c1 75%);
 }
 
 /* 모바일: 후기 안내 문구 */
@@ -468,9 +494,15 @@
   left: 50%;
   transform: translateX(-50%);
   padding: 12px 20px;
+  width: min(560px, calc(100vw - 24px));
+  max-width: calc(100vw - 24px);
   background: var(--bg-secondary, #2a2a2a);
   color: var(--text-primary, #fff);
   font-size: 14px;
+  line-height: 1.45;
+  text-align: center;
+  overflow-wrap: break-word;
+  word-break: keep-all;
   border-radius: 12px;
   border: 1px solid var(--border-color, #444);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
@@ -501,6 +533,15 @@
   .about-intro {
     font-size: 14px;
   }
+  .about-founded-badge {
+    margin-top: 12px;
+    font-size: 13px;
+    padding: 7px 12px;
+  }
+
+  .about-founded-badge strong {
+    font-size: 16px;
+  }
   .about-seniors {
     margin-top: 48px;
     padding: 36px 16px 48px;
@@ -524,5 +565,12 @@
   .about-logo-slot-wrap a img {
     max-width: 130px;
     max-height: 65px;
+  }
+}
+
+@media (max-width: 420px) {
+  .about-review-mobile-notice {
+    font-size: 13px;
+    padding: 11px 14px;
   }
 }

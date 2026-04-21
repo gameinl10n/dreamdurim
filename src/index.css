@@ -46,23 +46,30 @@ html:lang(zh) {
   --navbar-border: #505050;
   --navbar-bg: rgba(26, 26, 26, 0.95);
   --accent-color: #ffffff;
+  --highlight-gradient: linear-gradient(135deg, #ffe38a 0%, #ffd93d 38%, #ffb36a 100%);
+  --highlight-bg: linear-gradient(135deg, rgba(255, 217, 61, 0.24), rgba(255, 142, 83, 0.14));
+  --highlight-border: rgba(255, 255, 255, 0.2);
+  --highlight-shadow: 0 8px 22px rgba(0, 0, 0, 0.24);
   --font-primary:
     'CookieRun', 'Microsoft Yahei', 'NEXON Lv1 Gothic', -apple-system, BlinkMacSystemFont,
     sans-serif;
 }
 
 [data-theme='light'] {
-  /* 라이트 모드 - 밝고 따뜻한 색감 */
-  --bg-primary: #fefefe;
-  --bg-secondary: #ffffff;
-  --bg-hover: rgba(0, 0, 0, 0.05);
-  --text-primary: #2d2d2d;
-  --text-secondary: #666666;
-  --text-muted: #999999;
-  --border-color: #e8e8e8;
-  --navbar-border: #e0e0e0;
-  --navbar-bg: rgba(254, 254, 254, 0.95);
-  --accent-color: #ff6b6b;
+  /* 라이트 모드 - 눈부심 완화된 웜 톤 */
+  --bg-primary: #f6f2e9;
+  --bg-secondary: #ece6da;
+  --bg-hover: rgba(57, 50, 37, 0.08);
+  --text-primary: #26221c;
+  --text-secondary: #453f34;
+  --text-muted: #696253;
+  --border-color: #cfc6b6;
+  --navbar-border: #c6bca9;
+  --navbar-bg: rgba(246, 243, 236, 0.93);
+  --accent-color: #bf5e47;
+  --highlight-bg: linear-gradient(135deg, rgba(255, 205, 110, 0.22), rgba(236, 138, 96, 0.16));
+  --highlight-border: rgba(160, 124, 75, 0.28);
+  --highlight-shadow: 0 8px 18px rgba(80, 62, 33, 0.14);
 }
 
 /* 접근성: 키보드 포커스 스타일 */
@@ -138,5 +145,25 @@ code {
   50% {
     transform: translateY(-4px);
   }
+}
+
+/* 공통 강조 배지 */
+.ui-highlight-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1px solid var(--highlight-border);
+  background: var(--highlight-bg);
+  box-shadow: var(--highlight-shadow);
+}
+
+/* 공통 강조 숫자 */
+.ui-highlight-number {
+  background: var(--highlight-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 12px rgba(255, 217, 61, 0.16);
 }
 

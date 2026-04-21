@@ -33,7 +33,7 @@
   transition:
     opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
     transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  cursor: pointer;
+  cursor: default;
 }
 
 .we-profile--visible {
@@ -167,6 +167,9 @@
   margin: 0 0 4px 0;
   letter-spacing: -0.5px;
   transition: color 0.3s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .we-profile:hover .we-profile-name {
@@ -182,15 +185,63 @@
   white-space: nowrap;
 }
 
+.we-profile-mentor-summary {
+  margin: 0 0 10px 0;
+  padding: 8px 10px;
+  text-align: left;
+  margin-left: -12px;
+  margin-right: -12px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px dashed rgba(255, 217, 61, 0.34);
+  background: linear-gradient(180deg, rgba(255, 217, 61, 0.08), rgba(255, 142, 83, 0.04));
+}
+
+.we-profile-mentor-summary-item {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  flex-wrap: nowrap;
+}
+
+.we-profile-mentor-summary-item + .we-profile-mentor-summary-item {
+  margin-top: 4px;
+}
+
+.we-profile-mentor-summary-label {
+  color: var(--text-muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.we-profile-mentor-summary-value {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+}
+
+.we-profile-mentor-summary-unit {
+  margin-left: 1px;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
 .we-profile-career {
   margin: 0;
   text-align: left;
+  max-height: none;
+  opacity: 1;
+  overflow: visible;
 }
 
 .we-profile-career-item {
   margin-bottom: 10px;
-  padding-left: 12px;
-  border-left: 3px solid var(--text-muted);
+  padding-left: 0;
+  border-left: none;
 }
 
 .we-profile-career-item:last-child {
@@ -241,6 +292,9 @@
   font-weight: 400;
   color: var(--text-muted);
   line-height: 1.4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .we-profile:hover .we-profile-career-company {

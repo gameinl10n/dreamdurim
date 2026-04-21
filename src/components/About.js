@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useCloseOnEscape } from '../hooks/useCloseOnEscape';
 import PageHead from './PageHead';
@@ -6,6 +6,8 @@ import { MOBILE_BREAKPOINT } from '../constants/breakpoints';
 import { MOBILE_NOTICE_DURATION } from '../constants/timing';
 import { ABOUT_SENIORS } from '../data/aboutSeniors';
 import { MEMBER_REVIEWS } from '../data/memberReviews';
+import { useCountUp } from '../hooks/useCountUp';
+import { FOUNDATION_DATE, getDaysSinceDate } from '../utils/dateMetrics';
 import './About.css';
 
 const INFINITE_SCROLL_DUPLICATES = 3;
@@ -68,6 +70,13 @@ const About = () => {
   const [hoveredStarId, setHoveredStarId] = useState(null);
   const [mobileNoticeVisible, setMobileNoticeVisible] = useState(false);
   const centerBoxRef = useRef(null);
+  const daysSinceFoundation = useMemo(() => getDaysSinceDate(FOUNDATION_DATE), []);
+  const displayDaysSinceFoundation = useCountUp(daysSinceFoundation);
+  const foundedText = t('activities.progressSince', { days: displayDaysSinceFoundation.toLocaleString() });
+  const foundedMatch = foundedText.match(/D\+\d[\d,]*/);
+  const foundedPrefix = foundedMatch ? foundedText.slice(0, foundedMatch.index) : foundedText;
+  const foundedValue = foundedMatch ? foundedMatch[0] : '';
+  const foundedSuffix = foundedMatch ? foundedText.slice((foundedMatch.index || 0) + foundedMatch[0].length) : '';
 
   const handleStarClick = (itemId) => {
     if (window.innerWidth <= MOBILE_BREAKPOINT) {
@@ -119,6 +128,11 @@ const About = () => {
         ))}
         <h1 className="about-title">{t('about.title')}</h1>
         <p className="about-intro">{t('about.intro')}</p>
+        <p className="about-founded-badge ui-highlight-badge">
+          <span>{foundedPrefix}</span>
+          {foundedValue && <strong className="ui-highlight-number">{foundedValue}</strong>}
+          <span>{foundedSuffix}</span>
+        </p>
         {mobileNoticeVisible && (
           <div className="about-review-mobile-notice" role="status">
             {t('about.reviewMobileNotice')}

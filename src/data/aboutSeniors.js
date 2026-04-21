@@ -85,4 +85,18 @@ export const ABOUT_SENIORS = [
     descKey: 'about.seniorDesc12',
     url: '',
   },
+  {
+    id: 13,
+    name: 'NETEASEGAMES',
+    logo: getImagePath('/images/about/NETEASEGAMES.png'),
+    descKey: 'about.seniorDesc13',
+    url: '',
+  },
+  {
+    id: 14,
+    name: 'miHoYo',
+    logo: getImagePath('/images/about/miHoYo.png'),
+    descKey: 'about.seniorDesc14',
+    url: '',
+  },
 ];

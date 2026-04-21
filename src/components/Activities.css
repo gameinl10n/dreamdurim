@@ -11,6 +11,102 @@
   margin-bottom: 64px;
 }
 
+.activities-progress-card {
+  max-width: 720px;
+  margin: 0 auto 64px;
+  text-align: center;
+}
+
+.activities-progress-title {
+  margin: 0 0 24px 0;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-primary);
+}
+
+.activities-progress-desc {
+  max-width: 560px;
+  margin: 0 auto;
+  font-size: 16px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  white-space: pre-line;
+}
+
+.activities-progress-stats {
+  list-style: none;
+  margin: 16px auto 0;
+  padding: 0;
+  max-width: 720px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.activities-progress-stat-card {
+  margin: 0;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.03));
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.24), 0 0 0 1px rgba(255, 255, 255, 0.03) inset;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.activities-progress-stat-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 217, 61, 0.45);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.28), 0 0 20px rgba(255, 217, 61, 0.08);
+}
+
+.activities-progress-stat-card--external {
+  border-style: dashed;
+  border-color: rgba(255, 217, 61, 0.4);
+  background: linear-gradient(145deg, rgba(255, 217, 61, 0.08), rgba(255, 142, 83, 0.06));
+}
+
+.activities-progress-stat-card--external .activities-progress-stat-label::before {
+  content: '+ ';
+  color: rgba(255, 217, 61, 0.85);
+}
+
+.activities-progress-stat-icon {
+  font-size: 15px;
+  opacity: 0.95;
+}
+
+.activities-progress-stat-label {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.35;
+}
+
+.activities-progress-stat-value {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  color: var(--text-primary);
+}
+
+.activities-progress-stat-value strong {
+  font-size: 30px;
+  line-height: 1;
+  letter-spacing: -0.6px;
+}
+
+.activities-progress-stat-value em {
+  font-style: normal;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
 .activities-title {
   font-size: 32px;
   font-weight: 700;
@@ -135,6 +231,36 @@
 
   .activities-header {
     margin-bottom: 48px;
+  }
+
+  .activities-progress-card {
+    margin-bottom: 48px;
+  }
+
+  .activities-progress-title {
+    font-size: 24px;
+  }
+
+  .activities-progress-desc {
+    font-size: 15px;
+  }
+
+  .activities-progress-stats {
+    margin-top: 10px;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .activities-progress-stat-card {
+    padding: 11px 12px;
+  }
+
+  .activities-progress-stat-value strong {
+    font-size: 26px;
+  }
+
+  .activities-progress-stat-value em {
+    font-size: 13px;
   }
 
   .activities-title {

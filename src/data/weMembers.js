@@ -28,6 +28,10 @@ export const WE_MEMBERS = [
       ],
       current: { company: 'Private', role: 'Localization Korean Team Lead' },
     },
+    mentorMetrics: {
+      sessions: 13,
+      mentees: 198,
+    },
     image: getImagePath('/images/we/co-founder1.JPG'),
   },
   {
@@ -44,6 +48,10 @@ export const WE_MEMBERS = [
       ],
       current: { company: 'Yorigo', role: 'Chief Executive Officer' },
     },
+    mentorMetrics: {
+      sessions: 1,
+      mentees: 15,
+    },
     image: getImagePath('/images/we/co-founder2.jpg'),
   },
   {
@@ -54,6 +62,10 @@ export const WE_MEMBERS = [
     school: '절강대학교',
     studentId: '19',
     career: { former: [], current: { company: 'CJ LOGISTICS', role: 'Management Planning Team' } },
+    mentorMetrics: {
+      sessions: 1,
+      mentees: 15,
+    },
     image: getImagePath('/images/we/co-founder3.jpg'),
   },
   {
