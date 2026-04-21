@@ -26,7 +26,7 @@ export const WE_MEMBERS = [
         { company: 'miHoYo', role: 'Localization Specialist' },
         { company: 'NetEaseGames', role: 'Senior Global Localization Manager' },
       ],
-      current: { company: 'Hypergryph', role: 'Localization Korean Team Lead' },
+      current: { company: 'Private', role: 'Localization Korean Team Lead' },
     },
     image: getImagePath('/images/we/co-founder1.JPG'),
   },
