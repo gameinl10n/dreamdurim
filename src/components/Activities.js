@@ -7,7 +7,7 @@ import { PUBLIC_ACTIVITY_ITEMS, INTERNAL_ACTIVITY_ITEMS } from '../data/activiti
 import { ABOUT_SENIORS } from '../data/aboutSeniors';
 import { HISTORY_EVENTS } from '../data/historyData';
 import { WE_MEMBERS } from '../data/weMembers';
-import { FOUNDATION_DATE, getDaysSinceDate } from '../utils/dateMetrics';
+import { JOB_CHANNEL_START_DATE, getDaysSinceDate } from '../utils/dateMetrics';
 import './Activities.css';
 
 const ActivitiesList = ({ items }) => {
@@ -32,8 +32,7 @@ const sumMentorMetric = (members, key) =>
 
 const Activities = () => {
   const { t } = useTranslation();
-  const daysSinceFoundation = useMemo(() => getDaysSinceDate(FOUNDATION_DATE), []);
-  const jobsSharedCount = daysSinceFoundation + 1;
+  const jobsSharedCount = useMemo(() => getDaysSinceDate(JOB_CHANNEL_START_DATE), []);
   const seniorsCount = ABOUT_SENIORS.length;
   const leadMentorSessions = sumMentorMetric(WE_MEMBERS, 'sessions');
   const leadMentorMentees = sumMentorMetric(WE_MEMBERS, 'mentees');

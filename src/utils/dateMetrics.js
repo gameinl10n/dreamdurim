@@ -1,4 +1,5 @@
 export const FOUNDATION_DATE = new Date(2024, 8, 1);
+export const JOB_CHANNEL_START_DATE = new Date(2024, 11, 1);
 
 export const getDaysSinceDate = (targetDate, baseDate = new Date()) => {
   const dayMs = 24 * 60 * 60 * 1000;
