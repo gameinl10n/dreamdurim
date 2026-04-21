@@ -1,9 +1,9 @@
 import { getImagePath } from '../utils/assets';
 
 export const ROLE_KEYS = {
-  'Co-Founder': 'we.roleCoFounder',
-  'Co-Founder · CTO': 'we.roleCoFounderCto',
-  'Co-Founder · CEO': 'we.roleCoFounderCeo',
+  'Head Teacher': 'we.roleCoFounder',
+  'Head Teacher · CTO': 'we.roleCoFounderCto',
+  'Head Teacher · CEO': 'we.roleCoFounderCeo',
   'Team Lead · Gen 1': 'we.roleGen1TeamLead',
   'Team Lead · Gen 2': 'we.roleGen2TeamLead',
 };
@@ -16,7 +16,7 @@ export const ROLE_KEYS = {
 export const WE_MEMBERS = [
   {
     id: 1,
-    role: 'Co-Founder · CTO',
+    role: 'Head Teacher · CTO',
     group: 'founder',
     name: 'GWON BYEONGUK',
     school: '절강대학교',
@@ -32,7 +32,7 @@ export const WE_MEMBERS = [
   },
   {
     id: 2,
-    role: 'Co-Founder · CEO',
+    role: 'Head Teacher · CEO',
     group: 'founder',
     name: 'YOO SEUNGHO',
     school: '절강대학교',
@@ -48,7 +48,7 @@ export const WE_MEMBERS = [
   },
   {
     id: 5,
-    role: 'Co-Founder',
+    role: 'Head Teacher',
     group: 'founder',
     name: 'NOH HYEONCHEOL',
     school: '절강대학교',
